@@ -18,9 +18,12 @@ public class CartPage {
         if (cartPageInstance == null){
             cartPageInstance = new CartPage(driver);
         }
-        return cartPageInstance;
+        return cartPageInstance.setDriver(driver);
     }
-
+    private CartPage setDriver(WebDriver newDriver){
+        this.driver = newDriver;
+        return this;
+    }
     public Boolean isProductAdded(String actualProductName){
         new ElementActions(driver)
                 .waitForVisibility(products);

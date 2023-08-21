@@ -6,23 +6,26 @@ import org.testng.Assert;
 import org.testng.annotations.*;
 import pages.CartPage;
 import pages.LandingPage;
+import utils.BrowserActions;
 
 
 public class DemoTests {
     WebDriver driver;
 
-    @BeforeClass
+    @BeforeMethod
     public void setup(){
-        driver =  DriverFactory.getDriver();
+        driver = DriverFactory.getDriver();
+        System.out.println("actual driver: "+driver);
+
     }
     @Test
-    public void loginTest(){
+    public void demoTest(){
         String actualProductName = "ZARA COAT 3";
 
         Boolean isProductExistedOnCart =
                 LandingPage.using(driver)
                 .goTo()
-                .login("ahmedabdelnaby@gmail.com","Ab123456789")
+                .loginValid("ahmedabdelnaby@gmail.com","Ab123456789")
                         .addProductToCart(actualProductName)
                         .goToCart()
                         .isProductAdded(actualProductName);
@@ -39,10 +42,9 @@ public class DemoTests {
     }
 
 
-    @AfterClass
+    @AfterMethod
     public void teardown(){
-        if (driver != null){
-            driver.quit();
-        }
+        DriverFactory.quitDriver();
+
     }
 }

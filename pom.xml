@@ -10,7 +10,7 @@
   <name>seleniumFD</name>
   <url>http://maven.apache.org</url>
   <properties>
-    <selenium.version>4.11.0</selenium.version>
+    <selenium.version>4.10.0</selenium.version>
     <testng.version>7.8.0</testng.version>
     <commons-io.version>2.13.0</commons-io.version>
     <aspectj.version>1.9.9.1</aspectj.version>
@@ -24,6 +24,11 @@
   </properties>
 
   <dependencies>
+    <dependency>
+      <groupId>io.github.bonigarcia</groupId>
+      <artifactId>webdrivermanager</artifactId>
+      <version>5.4.1</version>
+    </dependency>
     <dependency>
       <groupId>org.testng</groupId>
       <artifactId>testng</artifactId>
@@ -121,10 +126,20 @@
   <profiles>
     <profile>
       <id>demo</id>
-      <properties>
-        <testNGSuite>src\test\resources\testng.xml</testNGSuite>
-      </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>${maven-surefire-plugin.version}</version>
+            <configuration>
+              <suiteXmlFiles>
+                <suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
+              </suiteXmlFiles>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
     </profile>
-
   </profiles>
 </project>

@@ -11,6 +11,7 @@ public class LandingPage {
     private By emailField = By.id("userEmail");
     private By passwordField = By.id("userPassword");
     private By loginBtn = By.id("login");
+    private By errorMsgLoc = By.cssSelector("div[aria-label='Incorrect email or password.']");
     private LandingPage(WebDriver driver) {
         this.driver = driver;
     }
@@ -18,7 +19,11 @@ public class LandingPage {
         if (landingPageInstance == null){
             landingPageInstance = new LandingPage(driver);
         }
-       return landingPageInstance;
+       return landingPageInstance.setDriver(driver);
+    }
+    private LandingPage setDriver(WebDriver newDriver){
+        this.driver = newDriver;
+        return this;
     }
     public LandingPage goTo(){
         driver.get(url);
@@ -37,11 +42,20 @@ public class LandingPage {
         driver.findElement(loginBtn).click();
         return this;
     }
-    public ProductCataloguePage login(String email,String password){
+    public ProductCataloguePage loginValid(String email,String password){
         enterEmail(email)
                 .enterPassword(password)
                 .clickLoginBtn();
         return ProductCataloguePage.using(driver);
     }
+    public LandingPage loginInValid(String email,String password) {
+        enterEmail(email)
+                .enterPassword(password)
+                .clickLoginBtn();
+        return this;
+    }
 
+        public String getErrorMsg() {
+        return new ElementActions(driver).getText(errorMsgLoc);
+    }
 }

@@ -6,9 +6,7 @@ import org.testng.ITestResult;
 
 public abstract class DriverManager {
 
-    protected static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
-    protected static ITestResult result;
-    protected static ITestContext context;
+
     static final String executionTypeProperty = System.getProperty("execution.type");
     static final String host = System.getProperty("remote.execution.host");
     static final String port = System.getProperty("remote.execution.port");
@@ -28,12 +26,5 @@ public abstract class DriverManager {
         }
     }
     protected abstract WebDriver createDriver();
-    public WebDriver getDriver() {
-        if (null == driver.get()) {
-            driver.set(this.createDriver());
-        }
-        return driver.get();
-    }
-
 
 }

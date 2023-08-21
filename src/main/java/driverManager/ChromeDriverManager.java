@@ -1,5 +1,6 @@
 package driverManager;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -13,10 +14,8 @@ import java.net.URL;
 public class ChromeDriverManager extends DriverManager {
 
         @Override
-        protected WebDriver createDriver() {
-            result = Reporter.getCurrentTestResult();
-            context = result.getTestContext();
-            if(DriverManager.executionTypeProperty.equalsIgnoreCase("remote")){
+        public WebDriver createDriver() {
+            if (DriverManager.executionTypeProperty.equalsIgnoreCase("remote")) {
                  /*
 //             * Steps to execute remotely with selenium grid and dockers VERY simple steps:...
 //             * 1- Install docker
@@ -29,25 +28,20 @@ public class ChromeDriverManager extends DriverManager {
 //             * 7- execute using this condition
 //             */
                 try {
-                    driver.set(new RemoteWebDriver(new URL("http://" + DriverManager.host + ":" + DriverManager.port + "/wd/hub"),
-                            getChromeOptions()));
-                    context.setAttribute("driver", driver.get());
+                    return new RemoteWebDriver(new URL("http://" + host + ":" + port + "/wd/hub"),
+                            getChromeOptions());
                 } catch (MalformedURLException e) {
                     e.printStackTrace();
                 }
 
             } else if (DriverManager.executionTypeProperty.equalsIgnoreCase("local headless")) {
-                driver.set(new ChromeDriver(getChromeOptions()));
-            } else {
-                driver.set(new ChromeDriver());
-                if (System.getProperty("maximize").equalsIgnoreCase("true")) {
-                    BrowserActions.maximizeWindow(driver.get());
-                } else {
-                    BrowserActions.setWindowResolution(driver.get());
-                }
+                WebDriverManager.chromedriver().setup();
+                return new ChromeDriver(getChromeOptions());
             }
-            context.setAttribute("driver", driver.get());
-            return driver.get();
+            // else return chrome local
+            WebDriverManager.chromedriver().setup();
+            return new ChromeDriver();
+
         }
         private ChromeOptions getChromeOptions() {
             ChromeOptions options = new ChromeOptions();

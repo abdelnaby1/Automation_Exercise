@@ -148,8 +148,18 @@ public class ElementActions {
         clickKeyboardKey(driver, elementLocator, key);
         return this;
     }
+    public String getText( By elementLocator) {
+        return getText(driver,elementLocator);
+    }
 
-    public static String getText(WebDriver driver, By elementLocator) {
+    private  String getText(WebDriver driver, By elementLocator) {
+        try {
+            Helper.getExplicitWait(driver).until(ExpectedConditions.visibilityOfElementLocated(elementLocator));
+        } catch (TimeoutException toe) {
+            fail(toe.getMessage());
+        } catch (Exception e) {
+            fail(e.getMessage());
+        }
         try {
             String text = driver.findElement(elementLocator).getText();
             return text;

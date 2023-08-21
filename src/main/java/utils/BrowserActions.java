@@ -1,5 +1,6 @@
 package utils;
 
+import driverManager.DriverFactory;
 import driverManager.DriverManager;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -32,11 +33,13 @@ public class BrowserActions {
                 driver.quit();
             } catch (WebDriverException rootCauseException) {
                 System.out.println(rootCauseException.getMessage());
+
 //                Logger.logMessage(rootCauseException.getMessage());
             } finally {
                 driver = null;
             }
         } else {
+            System.out.println("already closed suc");
 //            Logger.logMessage("Windows are already closed and the driver object is null.");
         }
     }
@@ -97,5 +100,14 @@ public class BrowserActions {
             fail(e.getMessage());
         }
         return title;
+    }
+    public static String getPageUrl(WebDriver driver) {
+        String url = "";
+        try {
+            url = driver.getCurrentUrl();
+        } catch (Exception e) {
+            fail(e.getMessage());
+        }
+        return url;
     }
 }

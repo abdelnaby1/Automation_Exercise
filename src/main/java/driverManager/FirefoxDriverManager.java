@@ -1,6 +1,7 @@
 package driverManager;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -13,30 +14,29 @@ import java.net.URL;
 public class FirefoxDriverManager extends DriverManager{
     @Override
     protected WebDriver createDriver() {
-        result = Reporter.getCurrentTestResult();
-        context = result.getTestContext();
-        if(DriverManager.executionTypeProperty.equalsIgnoreCase("remote")){
+        if (DriverManager.executionTypeProperty.equalsIgnoreCase("remote")) {
 
-            try {
-                driver.set(new RemoteWebDriver(new URL("http://" + DriverManager.host + ":" + DriverManager.port + "/wd/hub"),
-                        getFirefoxOptions()));
-                context.setAttribute("driver", driver.get());
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            }
+                try {
+                    return new RemoteWebDriver(new URL("http://" + host + ":" + port + "/wd/hub"),
+                            getFirefoxOptions());
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                }
 
         } else if (DriverManager.executionTypeProperty.equalsIgnoreCase("local headless")) {
-            driver.set(new FirefoxDriver(getFirefoxOptions()));
-        } else {
-            driver.set(new FirefoxDriver());
-            if (System.getProperty("maximize").equalsIgnoreCase("true")) {
-                BrowserActions.maximizeWindow(driver.get());
-            } else {
-                BrowserActions.setWindowResolution(driver.get());
-            }
+            return new FirefoxDriver(getFirefoxOptions());
+
+
+//                if (System.getProperty("maximize").equalsIgnoreCase("true")) {
+////                    BrowserActions.maximizeWindow(driver.get());
+//                } else {
+////                    BrowserActions.setWindowResolution(driver.get());
+//                }
+
+//
         }
-        context.setAttribute("driver", driver.get());
-        return driver.get();
+        // else return chrome local
+        return new FirefoxDriver();
     }
     private FirefoxOptions getFirefoxOptions() {
         FirefoxOptions options = new FirefoxOptions();
