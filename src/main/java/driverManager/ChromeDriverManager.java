@@ -13,11 +13,10 @@ import java.net.URL;
 public class ChromeDriverManager extends DriverManager {
 
         @Override
-        protected WebDriver createDriver(ExecutionType executionType,String executionTypeProperty,String host,String port) {
+        protected WebDriver createDriver() {
             result = Reporter.getCurrentTestResult();
             context = result.getTestContext();
-            if(executionType == ExecutionType.REMOTE || (executionType == ExecutionType.FROM_PROPERTIES
-                    && executionTypeProperty.equalsIgnoreCase("remote"))){
+            if(DriverManager.executionTypeProperty.equalsIgnoreCase("remote")){
                  /*
 //             * Steps to execute remotely with selenium grid and dockers VERY simple steps:...
 //             * 1- Install docker
@@ -30,15 +29,14 @@ public class ChromeDriverManager extends DriverManager {
 //             * 7- execute using this condition
 //             */
                 try {
-                    driver.set(new RemoteWebDriver(new URL("http://" + host + ":" + port + "/wd/hub"),
+                    driver.set(new RemoteWebDriver(new URL("http://" + DriverManager.host + ":" + DriverManager.port + "/wd/hub"),
                             getChromeOptions()));
                     context.setAttribute("driver", driver.get());
                 } catch (MalformedURLException e) {
                     e.printStackTrace();
                 }
 
-            } else if (executionType == ExecutionType.LOCAL_HEADLESS || (executionType == ExecutionType.FROM_PROPERTIES
-                    && executionTypeProperty.equalsIgnoreCase("local headless"))) {
+            } else if (DriverManager.executionTypeProperty.equalsIgnoreCase("local headless")) {
                 driver.set(new ChromeDriver(getChromeOptions()));
             } else {
                 driver.set(new ChromeDriver());

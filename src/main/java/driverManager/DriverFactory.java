@@ -10,7 +10,7 @@ public class DriverFactory {
 
     public enum BrowserType {
         MOZILLA_FIREFOX("Mozilla Firefox"),
-        GOOGLE_CHROME("Google Chrome"),
+         GOOGLE_CHROME("Google Chrome"),
         EDGE("edge"),
         FROM_PROPERTIES(browserTypeProperty);
 
@@ -24,6 +24,7 @@ public class DriverFactory {
             return value;
         }
     }
+
 
 
 
