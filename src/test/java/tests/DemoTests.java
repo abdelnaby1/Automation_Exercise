@@ -1,6 +1,9 @@
 package tests;
 
+import driverManager.ChromeDriverManager;
 import driverManager.DriverFactory;
+import driverManager.DriverManager;
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -10,6 +13,8 @@ import org.testng.annotations.*;
 import pages.CartPage;
 import pages.LandingPage;
 
+import java.io.File;
+import java.io.IOException;
 import java.time.Duration;
 
 public class DemoTests {
@@ -18,7 +23,8 @@ public class DemoTests {
     @BeforeClass
     public void setup(){
 
-        driver = DriverFactory.getDriver();
+        driver =  DriverFactory
+                .getDriver();
     }
     @Test
     public void loginTest(){
