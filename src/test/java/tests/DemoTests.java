@@ -2,19 +2,18 @@ package tests;
 
 import driverManager.DriverFactory;
 import org.openqa.selenium.*;
-import org.testng.Assert;
 import org.testng.annotations.*;
 import pages.CartPage;
 import pages.LandingPage;
-import pages.OrderDetailsPage;
-import utils.BrowserActions;
+
+import static org.testng.Assert.assertTrue;
 
 
 public class DemoTests {
     WebDriver driver;
     String actualProductName = "ZARA COAT 3";
     String countryName = "egypt";
-
+    String token;
     @BeforeClass
     public void setup(){
         driver = DriverFactory.getDriver();
@@ -31,25 +30,32 @@ public class DemoTests {
                         .goToCart()
                         .isProductAdded(actualProductName);
 
-        Assert.assertTrue(isProductExistedOnCart);
-
+        assertTrue(isProductExistedOnCart);
+        token = (String) ((JavascriptExecutor)driver).executeScript("return localStorage.getItem('token')");
 
         new CartPage(driver)
                 .goToCheckout()
                 .enterCountry(countryName)
                         .clickPlaceOrder();
 
+
     }
 
     @Test(dependsOnMethods = {"addToCartTest"})
     public void checkOrderTest(){
 
-        String productName =
-                new OrderDetailsPage(driver)
-                .goToMyOrders()
-                .getLastProductOrdered();
+        new LandingPage(driver).goTo();
 
-        Assert.assertTrue(actualProductName.equalsIgnoreCase(productName));
+        ((JavascriptExecutor)driver).executeScript("localStorage.setItem('token',arguments[0])",token);
+
+        Boolean isProductDisplayed =
+                new LandingPage(driver)
+                        .goTo()
+                        .getNavbar()
+                        .gotToMyOrders()
+                        .isProductDisplayed(actualProductName);
+
+        assertTrue(isProductDisplayed);
     }
     @AfterClass
     public void teardown(){

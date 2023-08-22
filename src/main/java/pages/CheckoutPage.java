@@ -22,7 +22,7 @@ public class CheckoutPage {
     public CheckoutPage enterCountry(String countryName){
         new ElementActions(driver)
                 .type(countyField,countryName)
-                .waitForVisibilityOfAllElements(countryResultsLoc);
+                .waitForVisibility(countryResultsLoc);
 
         var results = driver.findElements(By.xpath("//section[contains(@class,'ta-results')]/button"));
 

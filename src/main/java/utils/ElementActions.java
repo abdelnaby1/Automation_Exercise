@@ -20,11 +20,7 @@ public class ElementActions {
                 .until(ExpectedConditions.visibilityOfElementLocated(elementLocator));
         return this;
     }
-    public ElementActions waitForVisibilityOfAllElements(By elementLocator){
-        Helper.getExplicitWait(driver)
-                .until(ExpectedConditions.visibilityOfAllElementsLocatedBy(elementLocator));
-        return this;
-    }
+
     public ElementActions waitForInvisibility(By elementLocator){
         Helper.getExplicitWait(driver)
                 .until(ExpectedConditions.invisibilityOfElementLocated(elementLocator));

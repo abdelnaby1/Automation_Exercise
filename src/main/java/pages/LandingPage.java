@@ -2,10 +2,12 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import pages.common.Navbar;
 import utils.ElementActions;
 
 public class LandingPage {
     WebDriver driver;
+    Navbar navbar;
     private String url = "https://rahulshettyacademy.com/client";
     private By emailField = By.id("userEmail");
     private By passwordField = By.id("userPassword");
@@ -13,6 +15,10 @@ public class LandingPage {
     private By errorMsgLoc = By.cssSelector("div[aria-label='Incorrect email or password.']");
     public LandingPage(WebDriver driver) {
         this.driver = driver;
+    }
+
+    public Navbar getNavbar() {
+        return new Navbar(driver);
     }
 
     public LandingPage goTo(){

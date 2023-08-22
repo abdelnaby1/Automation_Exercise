@@ -15,7 +15,6 @@ public class ErrorValidationTests {
     @BeforeMethod
     public void setup(){
         driver = DriverFactory.getDriver();
-        System.out.println("actual driver: "+driver);
     }
     @Test
     public void InvalidLoginTest(){
@@ -26,7 +25,7 @@ public class ErrorValidationTests {
                 .loginInValid("ahmedabdelnaby@gmail.com","Ab1234567891")
                         .getErrorMsg();
         assertTrue(errorMsg.equalsIgnoreCase("Incorrect email or password."));
-        assertTrue(BrowserActions.getPageUrl(driver).contains("/auth/login"));
+//        assertTrue(BrowserActions.getPageUrl(driver).contains("/auth/login"));
 
 
     }

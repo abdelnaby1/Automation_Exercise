@@ -21,37 +21,40 @@ public class ProductCataloguePage {
     }
 
     public WebElement findProduct(String actualProductName){
-        new ElementActions(driver).waitForVisibilityOfAllElements(productsLoc);
+        new ElementActions(driver).waitForVisibility(productsLoc);
         var products = driver.findElements(productsLoc);
+        if (products.size() > 0){
+            return products.stream().filter((product) -> {
+                String productName = product.findElement(productsNameLoc).getText();
+                return productName.equalsIgnoreCase(actualProductName);
+            }).findFirst().orElse(null);
+        }else{
+            throw new RuntimeException("No Products found");
+        }
 
-        WebElement proudct = products.stream().filter((product) -> {
-            String productName = product.findElement(productsNameLoc).getText();
-            return Objects.equals(productName, actualProductName);
-        }).findFirst().orElse(null);
-        assert proudct != null;
-        return proudct;
-    }
-    public Boolean isProductDisplayed(String actualProductName){
-        new ElementActions(driver).waitForVisibilityOfAllElements(productsLoc);
-        var products = driver.findElements(productsLoc);
-
-        WebElement proudct = products.stream().filter((product) -> {
-            String productName = product.findElement(productsNameLoc).getText();
-            return Objects.equals(productName, actualProductName);
-        }).findFirst().orElse(null);
-
-        return null != proudct;
     }
     public ProductCataloguePage addProductToCart(String actualProductName){
         var product = findProduct(actualProductName);
         product.findElement(addToCartbtn).click();
 
         new ElementActions(driver)
-                .waitForVisibility(CommonLocators.toastMessageLoc)
-                .waitForInvisibility(CommonLocators.animationLayerLoc);
+                .waitForVisibility(new CommonLocators().toastMessageLoc)
+                .waitForInvisibility(new CommonLocators().animationLayerLoc);
 
         return this;
     }
+    public Boolean isProductDisplayed(String actualProductName){
+        new ElementActions(driver).waitForVisibility(productsLoc);
+        var products = driver.findElements(productsLoc);
+
+        WebElement proudct = products.stream().filter((product) -> {
+            String productName = product.findElement(productsNameLoc).getText();
+            return productName.equalsIgnoreCase(actualProductName);
+        }).findFirst().orElse(null);
+
+        return null != proudct;
+    }
+
 
     public CartPage goToCart(){
        return new Navbar(driver).goToCart();
