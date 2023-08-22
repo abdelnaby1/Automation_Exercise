@@ -4,10 +4,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import pages.CartPage;
 import pages.OrdersPage;
+import pages.ProductCataloguePage;
 import utils.ElementActions;
 
 public class Navbar {
-    WebDriver driver;
+//    private static ProductCataloguePage productCataloguePageInstance = null;
+
+    private WebDriver driver;
 
     public Navbar(WebDriver driver) {
         this.driver = driver;
