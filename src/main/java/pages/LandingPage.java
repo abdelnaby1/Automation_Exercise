@@ -6,7 +6,6 @@ import utils.ElementActions;
 
 public class LandingPage {
     WebDriver driver;
-    private static LandingPage landingPageInstance = null;
     private String url = "https://rahulshettyacademy.com/client";
     private By emailField = By.id("userEmail");
     private By passwordField = By.id("userPassword");
@@ -15,16 +14,7 @@ public class LandingPage {
     public LandingPage(WebDriver driver) {
         this.driver = driver;
     }
-//    public static LandingPage using(WebDriver driver){
-//        if (landingPageInstance == null){
-//            landingPageInstance = new LandingPage(driver);
-//        }
-//       return landingPageInstance.setDriver(driver);
-//    }
-//    private LandingPage setDriver(WebDriver newDriver){
-//        this.driver = newDriver;
-//        return this;
-//    }
+
     public LandingPage goTo(){
         driver.get(url);
         return this;

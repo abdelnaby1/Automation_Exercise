@@ -11,7 +11,9 @@
             </class>
             <class name="tests.DemoTests">
                 <methods>
-                    <include name="demoTest"/>
+                    <include name="addToCartTest"/>
+                    <include name="checkOrderTest"/>
+
                 </methods>
             </class>
 

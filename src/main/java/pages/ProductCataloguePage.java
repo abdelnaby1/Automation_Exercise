@@ -11,7 +11,6 @@ import java.util.Objects;
 
 public class ProductCataloguePage {
     private WebDriver driver;
-    private static ProductCataloguePage productCataloguePageInstance = null;
     Navbar navbar;
     private By productsLoc = By.cssSelector("#products * .row > div");
     private By productsNameLoc = By.cssSelector(".card-body b");
@@ -20,12 +19,7 @@ public class ProductCataloguePage {
     public ProductCataloguePage(WebDriver driver) {
         this.driver = driver;
     }
-//    public static ProductCataloguePage using(WebDriver driver){
-//        if (productCataloguePageInstance == null){
-//            productCataloguePageInstance = new ProductCataloguePage(driver);
-//        }
-//        return productCataloguePageInstance;
-//    }
+
     public WebElement findProduct(String actualProductName){
         new ElementActions(driver).waitForVisibilityOfAllElements(productsLoc);
         var products = driver.findElements(productsLoc);
