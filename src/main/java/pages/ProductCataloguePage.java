@@ -17,15 +17,15 @@ public class ProductCataloguePage {
     private By productsNameLoc = By.cssSelector(".card-body b");
     private By addToCartbtn = By.xpath("//div[contains(@class,'card-body')]/button[contains(text(),' Add To Cart')]");
 
-    private ProductCataloguePage(WebDriver driver) {
+    public ProductCataloguePage(WebDriver driver) {
         this.driver = driver;
     }
-    public static ProductCataloguePage using(WebDriver driver){
-        if (productCataloguePageInstance == null){
-            productCataloguePageInstance = new ProductCataloguePage(driver);
-        }
-        return productCataloguePageInstance;
-    }
+//    public static ProductCataloguePage using(WebDriver driver){
+//        if (productCataloguePageInstance == null){
+//            productCataloguePageInstance = new ProductCataloguePage(driver);
+//        }
+//        return productCataloguePageInstance;
+//    }
     public WebElement findProduct(String actualProductName){
         new ElementActions(driver).waitForVisibilityOfAllElements(productsLoc);
         var products = driver.findElements(productsLoc);
@@ -36,6 +36,17 @@ public class ProductCataloguePage {
         }).findFirst().orElse(null);
         assert proudct != null;
         return proudct;
+    }
+    public Boolean isProductDisplayed(String actualProductName){
+        new ElementActions(driver).waitForVisibilityOfAllElements(productsLoc);
+        var products = driver.findElements(productsLoc);
+
+        WebElement proudct = products.stream().filter((product) -> {
+            String productName = product.findElement(productsNameLoc).getText();
+            return Objects.equals(productName, actualProductName);
+        }).findFirst().orElse(null);
+
+        return null != proudct;
     }
     public ProductCataloguePage addProductToCart(String actualProductName){
         var product = findProduct(actualProductName);

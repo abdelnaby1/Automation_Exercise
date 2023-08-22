@@ -23,7 +23,7 @@ public class DemoTests {
         String actualProductName = "ZARA COAT 3";
 
         Boolean isProductExistedOnCart =
-                LandingPage.using(driver)
+                new LandingPage(driver)
                 .goTo()
                 .loginValid("ahmedabdelnaby@gmail.com","Ab123456789")
                         .addProductToCart(actualProductName)
@@ -34,7 +34,7 @@ public class DemoTests {
 
         String countryName = "egypt";
 
-        CartPage.using(driver)
+        new CartPage(driver)
                 .goToCheckout()
                 .enterCountry(countryName)
                         .clickPlaceOrder();

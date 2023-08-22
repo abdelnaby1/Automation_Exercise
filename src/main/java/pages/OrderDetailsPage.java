@@ -7,13 +7,13 @@ public class OrderDetailsPage {
     private static OrderDetailsPage orderDetailsPageInstance = null;
 
 
-    private OrderDetailsPage(WebDriver driver) {
+    public OrderDetailsPage(WebDriver driver) {
         this.driver = driver;
     }
-    public static OrderDetailsPage using(WebDriver driver){
-        if (orderDetailsPageInstance == null){
-            orderDetailsPageInstance = new OrderDetailsPage(driver);
-        }
-        return orderDetailsPageInstance;
-    }
+//    public static OrderDetailsPage using(WebDriver driver){
+//        if (orderDetailsPageInstance == null){
+//            orderDetailsPageInstance = new OrderDetailsPage(driver);
+//        }
+//        return orderDetailsPageInstance;
+//    }
 }

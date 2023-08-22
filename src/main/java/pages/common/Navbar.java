@@ -15,7 +15,7 @@ public class Navbar {
     private By cartBtn = By.cssSelector("button[routerlink*='cart']");
     public CartPage goToCart(){
         new ElementActions(driver).click(cartBtn);
-        return CartPage.using(driver);
+        return new CartPage(driver);
     }
 
 }
