@@ -12,11 +12,11 @@ import static org.testng.Assert.assertTrue;
 public class ErrorValidationTests {
     WebDriver driver;
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void setup(){
         driver = DriverFactory.getDriver();
     }
-    @Test
+    @Test(groups = {"errorValidation"})
     public void InvalidLoginTest(){
 
         String errorMsg =
@@ -30,7 +30,7 @@ public class ErrorValidationTests {
 
     }
 
-    @Test
+    @Test(groups = {"errorValidation"})
     public void addInvalidProductTest(){
 
         String actualProductName = "ZARA COATTT 3";
@@ -44,7 +44,7 @@ public class ErrorValidationTests {
         Assert.assertFalse(isProductExisted);
 
     }
-    @AfterMethod
+    @AfterMethod(alwaysRun = true)
     public void teardown(){
         DriverFactory.quitDriver();
     }
