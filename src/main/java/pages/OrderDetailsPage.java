@@ -1,19 +1,20 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import utils.ElementActions;
 
 public class OrderDetailsPage {
     private WebDriver driver;
-    private static OrderDetailsPage orderDetailsPageInstance = null;
+    private By myOrdersLoc = By.xpath("//label[text()=' Orders History Page ']");
 
-
-    private OrderDetailsPage(WebDriver driver) {
+    public OrderDetailsPage(WebDriver driver) {
         this.driver = driver;
     }
-    public static OrderDetailsPage using(WebDriver driver){
-        if (orderDetailsPageInstance == null){
-            orderDetailsPageInstance = new OrderDetailsPage(driver);
-        }
-        return orderDetailsPageInstance;
+
+    public OrdersPage goToMyOrders(){
+        new ElementActions(driver).click(myOrdersLoc);
+        return new OrdersPage(driver);
     }
+
 }

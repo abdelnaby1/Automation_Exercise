@@ -6,25 +6,15 @@ import utils.ElementActions;
 
 public class LandingPage {
     WebDriver driver;
-    private static LandingPage landingPageInstance = null;
     private String url = "https://rahulshettyacademy.com/client";
     private By emailField = By.id("userEmail");
     private By passwordField = By.id("userPassword");
     private By loginBtn = By.id("login");
     private By errorMsgLoc = By.cssSelector("div[aria-label='Incorrect email or password.']");
-    private LandingPage(WebDriver driver) {
+    public LandingPage(WebDriver driver) {
         this.driver = driver;
     }
-    public static LandingPage using(WebDriver driver){
-        if (landingPageInstance == null){
-            landingPageInstance = new LandingPage(driver);
-        }
-       return landingPageInstance.setDriver(driver);
-    }
-    private LandingPage setDriver(WebDriver newDriver){
-        this.driver = newDriver;
-        return this;
-    }
+
     public LandingPage goTo(){
         driver.get(url);
         return this;
@@ -46,7 +36,7 @@ public class LandingPage {
         enterEmail(email)
                 .enterPassword(password)
                 .clickLoginBtn();
-        return ProductCataloguePage.using(driver);
+        return new ProductCataloguePage(driver);
     }
     public LandingPage loginInValid(String email,String password) {
         enterEmail(email)

@@ -49,7 +49,7 @@ public class DriverFactory {
         return getDriver(BrowserType.FROM_PROPERTIES);
     }
     // should i use synchronized or not? it a topic to search for later
-    public static  WebDriver getDriver(BrowserType browserType) {
+    public static synchronized WebDriver getDriver(BrowserType browserType) {
         ITestResult result = Reporter.getCurrentTestResult();
         ITestContext context = result.getTestContext();
         if(browserType == BrowserType.GOOGLE_CHROME

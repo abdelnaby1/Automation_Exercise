@@ -35,6 +35,6 @@ public class CheckoutPage {
     public OrderDetailsPage clickPlaceOrder(){
         new ElementActions(driver)
                 .click(placeoOrderBtn);
-        return OrderDetailsPage.using(driver);
+        return new OrderDetailsPage(driver);
     }
 }
