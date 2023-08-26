@@ -5,6 +5,7 @@ import org.openqa.selenium.*;
 import org.testng.annotations.*;
 import pages.CartPage;
 import pages.LandingPage;
+import utils.BrowserActions;
 
 import static org.testng.Assert.assertTrue;
 

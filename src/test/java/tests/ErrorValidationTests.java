@@ -1,11 +1,16 @@
 package tests;
 
+import DataManager.JsonFileForDDTManager;
 import driverManager.DriverFactory;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import pages.LandingPage;
 import utils.BrowserActions;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Objects;
 
 import static org.testng.Assert.assertTrue;
 
@@ -16,13 +21,32 @@ public class ErrorValidationTests {
     public void setup(){
         driver = DriverFactory.getDriver();
     }
-    @Test(groups = {"errorValidation"})
-    public void InvalidLoginTest(){
+//    @DataProvider
+//    public Object[][] getData(){
+//        HashMap<Object, Object> map = new HashMap<Object,Object>();
+//        map.put("email","ahmedabdelnaby@gmail.com");
+//        map.put("password","Ab1234567891");
+//        HashMap<Object, Object> map2 = new HashMap<Object,Object>();
+//        map2.put("email","ahmedabdelnaby@gmail.com");
+//        map2.put("password","Ab1234567891");
+//        HashMap<Object, Object> map3 = new HashMap<Object,Object>();
+//        map3.put("email","ahmedabdelnaby@gmail.com");
+//        map3.put("password","Ab1234567891");
+//        return new Object[][]{{map},{map2},{map3}};
+//    }
+    @DataProvider
+    public Object[][] getData(){
+        JsonFileForDDTManager manager = new JsonFileForDDTManager(System.getProperty("user.dir")+"/src/test/resources/testData/purchaseOrder.json");
+        List<HashMap<Object, Object>> data = manager.getJsonDataToMap();
+        return new Object[][] {{data.get(0)},{data.get(1)}};
+    }
+    @Test(groups = {"errorValidation"},dataProvider = "getData")
+    public void InvalidLoginTest(HashMap<Object,Object> inputs){
 
         String errorMsg =
                 new LandingPage(driver)
                 .goTo()
-                .loginInValid("ahmedabdelnaby@gmail.com","Ab1234567891")
+                .loginInValid((String) inputs.get("email"), (String) inputs.get("password"))
                         .getErrorMsg();
         assertTrue(errorMsg.equalsIgnoreCase("Incorrect email or password."));
 //        assertTrue(BrowserActions.getPageUrl(driver).contains("/auth/login"));

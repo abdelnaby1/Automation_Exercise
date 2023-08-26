@@ -10,7 +10,7 @@ import utils.Helper;
 import static org.testng.Assert.fail;
 
 public class DriverFactory {
-    private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
+    private static final ThreadLocal<WebDriver> driver = new ThreadLocal<>();
     private static String browserTypeProperty = System.getProperty("browser.type");
 
     public enum BrowserType {
@@ -30,7 +30,7 @@ public class DriverFactory {
         }
     }
 
-    public static void quitDriver() {
+    public static synchronized void quitDriver() {
         if (null != driver.get()) {
             try {
                 driver.get().quit(); // First quit WebDriver session gracefully
@@ -38,8 +38,9 @@ public class DriverFactory {
                 driver.set(null);
             } catch (Exception e) {
                 System.err.println("Unable to gracefully quit WebDriver."+ e); // We'll replace this with actual Loggers later - don't worry !
+            }finally {
+                driver.set(null);
             }
-
 
         }
     }

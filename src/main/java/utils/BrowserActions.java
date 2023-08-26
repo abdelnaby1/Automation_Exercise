@@ -31,6 +31,7 @@ public class BrowserActions {
         if (driver != null) {
             try {
                 driver.quit();
+
             } catch (WebDriverException rootCauseException) {
                 System.out.println(rootCauseException.getMessage());
 

@@ -39,7 +39,8 @@ public class ProductCataloguePage {
 
         new ElementActions(driver)
                 .waitForVisibility(new CommonLocators().toastMessageLoc)
-                .waitForInvisibility(new CommonLocators().animationLayerLoc);
+                .waitForInvisibility(new CommonLocators().animationLayerLoc)
+                .waitForInvisibility(new CommonLocators().toastMessageLoc);
 
         return this;
     }
