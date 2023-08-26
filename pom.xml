@@ -17,6 +17,7 @@
     <commons-io.version>2.13.0</commons-io.version>
     <aspectj.version>1.9.9.1</aspectj.version>
     <poi-ooxml.version>5.2.3</poi-ooxml.version>
+    <extentreports.version>5.1.0</extentreports.version>
     <slf4j.version>2.0.7</slf4j.version>
     <aspectj.version>1.9.20</aspectj.version>
     <maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
@@ -45,6 +46,11 @@
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>selenium-devtools-v113</artifactId>
       <version>4.11.0</version>
+    </dependency>
+    <dependency>
+      <groupId>com.aventstack</groupId>
+      <artifactId>extentreports</artifactId>
+      <version>${extentreports.version}</version>
     </dependency>
     <dependency>
       <groupId>com.jayway.jsonpath</groupId>
