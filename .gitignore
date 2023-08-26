@@ -4,6 +4,7 @@ target/
 !**/src/test/**/target/
 ### Reports ###
 reports/
+reports/ExtentReport.html
 ### IntelliJ IDEA ###
 .idea/modules.xml
 .idea/jarRepositories.xml
