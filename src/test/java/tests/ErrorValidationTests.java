@@ -6,18 +6,16 @@ import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import pages.LandingPage;
-import utils.BrowserActions;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Objects;
 
 import static org.testng.Assert.assertTrue;
 
 public class ErrorValidationTests {
     WebDriver driver;
 
-    @BeforeMethod(alwaysRun = true)
+    @BeforeMethod
     public void setup(){
         driver = DriverFactory.getDriver();
     }
@@ -49,12 +47,11 @@ public class ErrorValidationTests {
                 .loginInValid((String) inputs.get("email"), (String) inputs.get("password"))
                         .getErrorMsg();
         assertTrue(errorMsg.equalsIgnoreCase("Incorrect email or password."));
-//        assertTrue(BrowserActions.getPageUrl(driver).contains("/auth/login"));
 
 
     }
 
-    @Test(groups = {"errorValidation"})
+    @Test
     public void addInvalidProductTest(){
 
         String actualProductName = "ZARA COATTT 3";
@@ -68,7 +65,7 @@ public class ErrorValidationTests {
         Assert.assertFalse(isProductExisted);
 
     }
-    @AfterMethod(alwaysRun = true)
+    @AfterMethod
     public void teardown(){
         DriverFactory.quitDriver();
     }
