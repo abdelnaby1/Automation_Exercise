@@ -3,11 +3,13 @@
 <suite name="All Test Suite" thread-count="3" parallel="methods">
     <test verbose="2"  name="Exercises">
         <classes>
-            <class name="tests.ErrorValidationTests">
-                <methods>
-                    <include name="InvalidLoginTest"/>
-                    <include name="addInvalidProductTest"/>
-                </methods>
+<!--            <class name="tests.ErrorValidationTests">-->
+<!--                <methods>-->
+<!--                    <include name="InvalidLoginTest"/>-->
+<!--                    <include name="addInvalidProductTest"/>-->
+<!--                </methods>-->
+<!--            </class>-->
+            <class name="tests.ExtentReportTest">
             </class>
         </classes>
     </test>
