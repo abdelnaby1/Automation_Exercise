@@ -6,6 +6,7 @@ import com.aventstack.extentreports.markuputils.MarkupHelper;
 import org.openqa.selenium.WebDriver;
 import org.testng.*;
 
+
 public class TestngListener implements ISuiteListener, ITestListener, IInvokedMethodListener {
     // ISuiteListener
 
@@ -48,10 +49,10 @@ public class TestngListener implements ISuiteListener, ITestListener, IInvokedMe
         ITestContext context = result.getTestContext();
         WebDriver driver = (WebDriver) context.getAttribute("driver");
         if (driver != null) {
-            ExtentReport.pass(ExtentReport.attachScreenshotToExtentReport(driver));
+            ExtentReport.pass(ExtentReport.attachScreenshotToExtentReport());
         }
+        System.out.println("result will be " +result.getMethod().getMethodName());
         ExtentReport.pass(MarkupHelper.createLabel(result.getMethod().getMethodName() + " Passed!", ExtentColor.GREEN));
-
     }
 
     @Override
@@ -59,7 +60,7 @@ public class TestngListener implements ISuiteListener, ITestListener, IInvokedMe
         ITestContext context = result.getTestContext();
         WebDriver driver = (WebDriver) context.getAttribute("driver");
         if (driver != null) {
-            ExtentReport.fail(ExtentReport.attachScreenshotToExtentReport(driver));
+            ExtentReport.fail(ExtentReport.attachScreenshotToExtentReport());
         }
         ExtentReport.fail(MarkupHelper.createLabel(result.getMethod().getMethodName() + " Failed!", ExtentColor.RED));
         if (result.getThrowable() != null) {
@@ -81,7 +82,7 @@ public class TestngListener implements ISuiteListener, ITestListener, IInvokedMe
     }
 
     @Override
-    public void onTestFailedWithTimeout(ITestResult result) {
+    public void  onTestFailedWithTimeout(ITestResult result) {
         ITestListener.super.onTestFailedWithTimeout(result);
     }
 
@@ -128,13 +129,13 @@ public class TestngListener implements ISuiteListener, ITestListener, IInvokedMe
         System.out.println("===========================================================================================" + "\n");
     }
 
-    @Override
-    public void beforeInvocation(IInvokedMethod method, ITestResult testResult, ITestContext context) {
-        IInvokedMethodListener.super.beforeInvocation(method, testResult, context);
-    }
-
-    @Override
-    public void afterInvocation(IInvokedMethod method, ITestResult testResult, ITestContext context) {
-        IInvokedMethodListener.super.afterInvocation(method, testResult, context);
-    }
+//    @Override
+//    public void beforeInvocation(IInvokedMethod method, ITestResult testResult, ITestContext context) {
+//        IInvokedMethodListener.super.beforeInvocation(method, testResult, context);
+//    }
+//
+//    @Override
+//    public void afterInvocation(IInvokedMethod method, ITestResult testResult, ITestContext context) {
+//        IInvokedMethodListener.super.afterInvocation(method, testResult, context);
+//    }
 }

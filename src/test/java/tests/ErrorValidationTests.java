@@ -13,7 +13,7 @@ import java.util.List;
 import static org.testng.Assert.assertTrue;
 
 public class ErrorValidationTests {
-    WebDriver driver;
+    private WebDriver driver;
 
     @BeforeMethod
     public void setup(){
@@ -38,7 +38,7 @@ public class ErrorValidationTests {
         List<HashMap<Object, Object>> data = manager.getJsonDataToMap();
         return new Object[][] {{data.get(0)},{data.get(1)}};
     }
-    @Test(groups = {"errorValidation"},dataProvider = "getData")
+    @Test(groups = {"errorValidation"},dataProvider = "getData", testName = "InvalidLoginTest")
     public void InvalidLoginTest(HashMap<Object,Object> inputs){
 
         String errorMsg =
@@ -51,7 +51,7 @@ public class ErrorValidationTests {
 
     }
 
-    @Test
+    @Test( testName = "addInvalidProductTest")
     public void addInvalidProductTest(){
 
         String actualProductName = "ZARA COATTT 3";

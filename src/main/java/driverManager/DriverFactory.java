@@ -7,6 +7,8 @@ import org.testng.Reporter;
 import utils.BrowserActions;
 import utils.Helper;
 
+import java.util.Arrays;
+
 import static org.testng.Assert.fail;
 
 public class DriverFactory {
@@ -45,12 +47,21 @@ public class DriverFactory {
         }
     }
 
-    public static WebDriver getDriver() {
+    public static synchronized WebDriver getDriver() {
+        if (driver.get() == null){
+            return setupDriver(BrowserType.FROM_PROPERTIES);
 
-        return getDriver(BrowserType.FROM_PROPERTIES);
+        }
+        return driver.get();
     }
-    // should i use synchronized or not? it a topic to search for later
     public static synchronized WebDriver getDriver(BrowserType browserType) {
+        if (driver.get() == null){
+            return setupDriver(browserType);
+
+        }
+        return driver.get();
+    }
+    private static synchronized WebDriver setupDriver(BrowserType browserType) {
         ITestResult result = Reporter.getCurrentTestResult();
         ITestContext context = result.getTestContext();
         if(browserType == BrowserType.GOOGLE_CHROME
@@ -59,6 +70,7 @@ public class DriverFactory {
 
             driver.set(new ChromeDriverManager().createDriver());
             context.setAttribute("driver", driver.get());
+//            Arrays.stream(context.getClass().getMethods()).forEach(method -> context.setAttribute(method.getName(),driver.get()));
 //            Helper.implicitWait(driver.get());
             if (System.getProperty("maximize").equalsIgnoreCase("true")) {
                 BrowserActions.maximizeWindow(driver.get());
@@ -72,6 +84,7 @@ public class DriverFactory {
 
             driver.set(new FirefoxDriverManager().createDriver());
             context.setAttribute("driver", driver.get());
+//            Helper.implicitWait(driver.get());
             if (System.getProperty("maximize").equalsIgnoreCase("true")) {
                 BrowserActions.maximizeWindow(driver.get());
             } else {
@@ -82,6 +95,7 @@ public class DriverFactory {
                 || (browserType == BrowserType.FROM_PROPERTIES && browserTypeProperty.equalsIgnoreCase("edge"))){
             driver.set(new EdgeDriverManager().createDriver());
             context.setAttribute("driver", driver.get());
+//            Helper.implicitWait(driver.get());
             if (System.getProperty("maximize").equalsIgnoreCase("true")) {
                 BrowserActions.maximizeWindow(driver.get());
             } else {
