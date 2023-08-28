@@ -1,10 +1,11 @@
-package utils;
+package Listener;
 
 import Reporting.ExtentReport;
 import com.aventstack.extentreports.markuputils.ExtentColor;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 import org.openqa.selenium.WebDriver;
 import org.testng.*;
+import utils.PropertiesReader;
 
 
 public class TestngListener implements ISuiteListener, ITestListener, IInvokedMethodListener {
@@ -70,6 +71,11 @@ public class TestngListener implements ISuiteListener, ITestListener, IInvokedMe
 
     @Override
     public void onTestSkipped(ITestResult result) {
+        ITestContext context = result.getTestContext();
+        WebDriver driver = (WebDriver) context.getAttribute("driver");
+        if (driver != null) {
+            ExtentReport.fail(ExtentReport.attachScreenshotToExtentReport());
+        }
         ExtentReport.skip(MarkupHelper.createLabel(result.getMethod().getMethodName() + " Skipped!", ExtentColor.YELLOW));
         if (result.getThrowable() != null) {
             ExtentReport.skip(result.getThrowable());

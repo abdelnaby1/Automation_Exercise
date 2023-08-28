@@ -94,6 +94,6 @@ public class ExtentReport {
     }
     public static synchronized Media attachScreenshotToExtentReport() {
         return MediaEntityBuilder.createScreenCaptureFromBase64String(
-                ((TakesScreenshot) DriverFactory.getDriver()).getScreenshotAs(OutputType.BASE64), DriverFactory.getDriver().getClass().getSimpleName()).build();
+                ((TakesScreenshot) DriverFactory.getDriver()).getScreenshotAs(OutputType.BASE64), "Screenshot Of the Page").build();
     }
 }
