@@ -133,7 +133,7 @@
             <properties>
               <property>
                 <name>usedefaultlisteners</name>
-                <value>false</value> <!-- disabling default listeners is optional -->
+                <value>true</value> <!-- disabling default listeners is optional -->
               </property>
               <property>
                 <name>listener</name>
