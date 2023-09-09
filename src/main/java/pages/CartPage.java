@@ -5,11 +5,10 @@ import org.openqa.selenium.WebDriver;
 import utils.ElementActions;
 
 public class CartPage {
-    WebDriver driver;
-    private static CartPage cartPageInstance = null;
+    private final WebDriver driver;
 
-    private By products = By.xpath("//*[contains(@class,'cartSection')]/h3");
-    private By checkoutBtn = By.xpath("//button[contains(text(),'Checkout')]");
+    private final By products = By.xpath("//*[contains(@class,'cartSection')]/h3");
+    private final By checkoutBtn = By.xpath("//button[contains(text(),'Checkout')]");
 
     public CartPage(WebDriver driver) {
         this.driver = driver;
@@ -22,6 +21,6 @@ public class CartPage {
     }
     public CheckoutPage goToCheckout(){
         new ElementActions(driver).click(checkoutBtn);
-        return CheckoutPage.using(driver);
+        return new CheckoutPage(driver);
     }
 }

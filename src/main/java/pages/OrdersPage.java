@@ -8,9 +8,9 @@ import utils.ElementActions;
 import java.util.Objects;
 
 public class OrdersPage {
-    private WebDriver driver;
-    private By lastOrderLoc = By.cssSelector("tbody tr:nth-child(1) td:nth-child(3)");
-    private By productsNamesLoc = By.xpath("//tbody/tr/td[2]");
+    private final WebDriver driver;
+    private final By lastOrderLoc = By.cssSelector("tbody tr:nth-child(1) td:nth-child(3)");
+    private final By productsNamesLoc = By.xpath("//tbody/tr/td[2]");
     public OrdersPage(WebDriver driver) {
         this.driver = driver;
     }
@@ -22,11 +22,11 @@ public class OrdersPage {
         new ElementActions(driver).waitForVisibility(productsNamesLoc);
         var products = driver.findElements(productsNamesLoc);
 
-        WebElement proudct = products.stream().filter((product) -> {
+        WebElement productEle = products.stream().filter((product) -> {
             String pn = product.findElement(productsNamesLoc).getText();
             return pn.equalsIgnoreCase(productName);
         }).findFirst().orElse(null);
 
-        return null != proudct;
+        return null != productEle;
     }
 }

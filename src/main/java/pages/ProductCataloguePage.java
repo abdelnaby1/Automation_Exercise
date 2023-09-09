@@ -10,11 +10,10 @@ import utils.ElementActions;
 import java.util.Objects;
 
 public class ProductCataloguePage {
-    private WebDriver driver;
-    Navbar navbar;
-    private By productsLoc = By.cssSelector("#products * .row > div");
-    private By productsNameLoc = By.cssSelector(".card-body b");
-    private By addToCartbtn = By.xpath("//div[contains(@class,'card-body')]/button[contains(text(),' Add To Cart')]");
+    private final WebDriver driver;
+    private final By productsLoc = By.cssSelector("#products * .row > div");
+    private final By productsNameLoc = By.cssSelector(".card-body b");
+    private final By addToCartbtn = By.xpath("//div[contains(@class,'card-body')]/button[contains(text(),' Add To Cart')]");
 
     public ProductCataloguePage(WebDriver driver) {
         this.driver = driver;
@@ -48,12 +47,12 @@ public class ProductCataloguePage {
         new ElementActions(driver).waitForVisibility(productsLoc);
         var products = driver.findElements(productsLoc);
 
-        WebElement proudct = products.stream().filter((product) -> {
+        WebElement productEle = products.stream().filter((product) -> {
             String productName = product.findElement(productsNameLoc).getText();
             return productName.equalsIgnoreCase(actualProductName);
         }).findFirst().orElse(null);
 
-        return null != proudct;
+        return null != productEle;
     }
 
 

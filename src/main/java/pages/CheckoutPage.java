@@ -5,19 +5,12 @@ import org.openqa.selenium.WebDriver;
 import utils.ElementActions;
 
 public class CheckoutPage {
-    private WebDriver driver;
-    private static CheckoutPage checkoutPageInstance = null;
-    private By countyField = By.cssSelector("input[placeholder='Select Country']");
-    private By countryResultsLoc = By.xpath("//section[contains(@class,'ta-results')]/button");
-    private By placeoOrderBtn = By.cssSelector(".action__submit");
-    private CheckoutPage(WebDriver driver) {
+    private final WebDriver driver;
+    private final By countyField = By.cssSelector("input[placeholder='Select Country']");
+    private final By countryResultsLoc = By.xpath("//section[contains(@class,'ta-results')]/button");
+    private final By placeOrderBtn = By.cssSelector(".action__submit");
+    public CheckoutPage(WebDriver driver) {
         this.driver = driver;
-    }
-    public static CheckoutPage using(WebDriver driver){
-        if (checkoutPageInstance == null){
-            checkoutPageInstance = new CheckoutPage(driver);
-        }
-        return checkoutPageInstance;
     }
     public CheckoutPage enterCountry(String countryName){
         new ElementActions(driver)
@@ -34,7 +27,7 @@ public class CheckoutPage {
     }
     public OrderDetailsPage clickPlaceOrder(){
         new ElementActions(driver)
-                .click(placeoOrderBtn);
+                .click(placeOrderBtn);
         return new OrderDetailsPage(driver);
     }
 }

@@ -14,7 +14,6 @@ import static org.testng.Assert.assertTrue;
 
 public class ErrorValidationTests {
     private WebDriver driver;
-
     @BeforeMethod
     public void setup(){
         driver = DriverFactory.getDriver();

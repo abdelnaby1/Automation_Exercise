@@ -6,13 +6,11 @@ import pages.common.Navbar;
 import utils.ElementActions;
 
 public class LandingPage {
-    WebDriver driver;
-    Navbar navbar;
-    private String url = "https://rahulshettyacademy.com/client";
-    private By emailField = By.id("userEmail");
-    private By passwordField = By.id("userPassword");
-    private By loginBtn = By.id("login");
-    private By errorMsgLoc = By.cssSelector("div[aria-label='Incorrect email or password.']");
+    private final WebDriver driver;
+    private final By emailField = By.id("userEmail");
+    private final By passwordField = By.id("userPassword");
+    private final By loginBtn = By.id("login");
+    private final By errorMsgLoc = By.cssSelector("div[aria-label='Incorrect email or password.']");
     public LandingPage(WebDriver driver) {
         this.driver = driver;
     }
@@ -22,6 +20,7 @@ public class LandingPage {
     }
 
     public LandingPage goTo(){
+        String url = "https://rahulshettyacademy.com/client";
         driver.get(url);
         return this;
     }

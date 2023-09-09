@@ -8,16 +8,15 @@ import pages.ProductCataloguePage;
 import utils.ElementActions;
 
 public class Navbar {
-//    private static ProductCataloguePage productCataloguePageInstance = null;
 
-    private WebDriver driver;
+    private final WebDriver driver;
 
     public Navbar(WebDriver driver) {
         this.driver = driver;
     }
 
-    private By cartBtn = By.cssSelector("button[routerlink*='cart']");
-    private By ordersBtn = By.cssSelector("button[routerlink='/dashboard/myorders']");
+    private final By cartBtn = By.cssSelector("button[routerlink*='cart']");
+    private final By ordersBtn = By.cssSelector("button[routerlink='/dashboard/myorders']");
     public CartPage goToCart(){
         new ElementActions(driver).click(cartBtn);
         return new CartPage(driver);

@@ -10,6 +10,8 @@ import utils.BrowserActions;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ChromeDriverManager extends DriverManager {
 
@@ -33,8 +35,15 @@ public class ChromeDriverManager extends DriverManager {
                 } catch (MalformedURLException e) {
                     e.printStackTrace();
                 }
-
-            } else if (DriverManager.executionTypeProperty.equalsIgnoreCase("local headless")) {
+            }else if (DriverManager.executionTypeProperty.equalsIgnoreCase("saucelab")) {
+                try {
+                    return new RemoteWebDriver(new URL(saucelabUrl),
+                            getChromeOptionsForSauceLab());
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                }
+            }
+            else if (DriverManager.executionTypeProperty.equalsIgnoreCase("local headless")) {
                 WebDriverManager.chromedriver().setup();
                 return new ChromeDriver(getChromeOptions());
             }
@@ -45,8 +54,20 @@ public class ChromeDriverManager extends DriverManager {
         }
         private ChromeOptions getChromeOptions() {
             ChromeOptions options = new ChromeOptions();
-            options.addArguments("--headless");
+            options.addArguments("--headless=new");
             options.addArguments("--window-size=1920,1080");
             return options;
         }
+    private ChromeOptions getChromeOptionsForSauceLab() {
+        ChromeOptions browserOptions = new ChromeOptions();
+        browserOptions.setPlatformName("Windows 11");
+        browserOptions.setBrowserVersion("latest");
+        Map<String, Object> sauceOptions = new HashMap<>();
+        sauceOptions.put("username", saucelabUsername);
+        sauceOptions.put("accessKey", saucelabKey);
+        sauceOptions.put("build", "selenium-build-E0H34");
+        sauceOptions.put("name", "Automation practice");
+        browserOptions.setCapability("sauce:options", sauceOptions);
+        return browserOptions;
+    }
 }
