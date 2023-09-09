@@ -26,21 +26,13 @@ public class EdgeDriverManager extends DriverManager{
         } else if (DriverManager.executionTypeProperty.equalsIgnoreCase("local headless")) {
             return new EdgeDriver(getEdgeOptions());
 
-
-//                if (System.getProperty("maximize").equalsIgnoreCase("true")) {
-////                    BrowserActions.maximizeWindow(driver.get());
-//                } else {
-////                    BrowserActions.setWindowResolution(driver.get());
-//                }
-
-//
         }
         // else return chrome local
         return new EdgeDriver();
     }
     private EdgeOptions getEdgeOptions() {
         EdgeOptions options = new EdgeOptions();
-        options.addArguments("--headless");
+        options.addArguments("--headless=new");
         options.addArguments("--window-size=1920,1080");
         return options;
     }

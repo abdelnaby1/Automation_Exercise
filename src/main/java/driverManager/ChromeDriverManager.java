@@ -45,7 +45,7 @@ public class ChromeDriverManager extends DriverManager {
         }
         private ChromeOptions getChromeOptions() {
             ChromeOptions options = new ChromeOptions();
-            options.addArguments("--headless");
+            options.addArguments("--headless=new");
             options.addArguments("--window-size=1920,1080");
             return options;
         }

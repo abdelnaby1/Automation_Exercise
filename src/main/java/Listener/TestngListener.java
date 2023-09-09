@@ -10,7 +10,6 @@ import utils.PropertiesReader;
 
 public class TestngListener implements ISuiteListener, ITestListener, IInvokedMethodListener {
     // ISuiteListener
-
     @Override
     public void onStart(ISuite suite) {
         PropertiesReader.loadProperties();
@@ -47,22 +46,18 @@ public class TestngListener implements ISuiteListener, ITestListener, IInvokedMe
 
     @Override
     public void onTestSuccess(ITestResult result) {
-        ITestContext context = result.getTestContext();
-        WebDriver driver = (WebDriver) context.getAttribute("driver");
-        if (driver != null) {
-            ExtentReport.pass(ExtentReport.attachScreenshotToExtentReport());
-        }
+//        ITestContext context = result.getTestContext();
+//        WebDriver driver = (WebDriver) context.getAttribute("driver");
+//        if (driver != null) {
+        ExtentReport.pass(ExtentReport.attachScreenshotToExtentReport());
+//        }
         System.out.println("result will be " +result.getMethod().getMethodName());
         ExtentReport.pass(MarkupHelper.createLabel(result.getMethod().getMethodName() + " Passed!", ExtentColor.GREEN));
     }
 
     @Override
     public void onTestFailure(ITestResult result) {
-        ITestContext context = result.getTestContext();
-        WebDriver driver = (WebDriver) context.getAttribute("driver");
-        if (driver != null) {
-            ExtentReport.fail(ExtentReport.attachScreenshotToExtentReport());
-        }
+        ExtentReport.fail(ExtentReport.attachScreenshotToExtentReport());
         ExtentReport.fail(MarkupHelper.createLabel(result.getMethod().getMethodName() + " Failed!", ExtentColor.RED));
         if (result.getThrowable() != null) {
             ExtentReport.fail(result.getThrowable());
@@ -71,11 +66,6 @@ public class TestngListener implements ISuiteListener, ITestListener, IInvokedMe
 
     @Override
     public void onTestSkipped(ITestResult result) {
-        ITestContext context = result.getTestContext();
-        WebDriver driver = (WebDriver) context.getAttribute("driver");
-        if (driver != null) {
-            ExtentReport.fail(ExtentReport.attachScreenshotToExtentReport());
-        }
         ExtentReport.skip(MarkupHelper.createLabel(result.getMethod().getMethodName() + " Skipped!", ExtentColor.YELLOW));
         if (result.getThrowable() != null) {
             ExtentReport.skip(result.getThrowable());

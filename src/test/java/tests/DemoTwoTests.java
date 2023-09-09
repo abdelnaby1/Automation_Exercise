@@ -10,23 +10,22 @@ import utils.BrowserActions;
 import static org.testng.Assert.assertTrue;
 
 
-public class DemoTests {
+public class DemoTwoTests {
     WebDriver driver;
     String actualProductName = "ZARA COAT 3";
     String countryName = "egypt";
     String token;
-    @BeforeMethod()
+    @BeforeMethod
     public void setup(){
         driver = DriverFactory.getDriver();
 
     }
     @Test
-    public void addToCartTest(){
-
+    public void addToCartTestTwo(){
         Boolean isProductExistedOnCart =
                 new LandingPage(driver)
-                .goTo()
-                .loginValid("ahmedabdelnaby@gmail.com","Ab123456789")
+                        .goTo()
+                        .loginValid("ahmedabdelnaby@gmail.com","Ab123456789")
                         .addProductToCart(actualProductName)
                         .goToCart()
                         .isProductAdded(actualProductName);
@@ -37,13 +36,13 @@ public class DemoTests {
         new CartPage(driver)
                 .goToCheckout()
                 .enterCountry(countryName)
-                        .clickPlaceOrder();
-
+                .clickPlaceOrder();
 
     }
 
-    @Test(dependsOnMethods = {"addToCartTest"})
-    public void checkOrderTest(){
+    @Test(dependsOnMethods = {"addToCartTestTwo"})
+    public void checkOrderTestTwo(){
+
 
         new LandingPage(driver).goTo();
 
@@ -57,10 +56,10 @@ public class DemoTests {
                         .isProductDisplayed(actualProductName);
 
         assertTrue(isProductDisplayed);
+
     }
     @AfterMethod
     public void teardown(){
-       DriverFactory.quitDriver();
-
+        DriverFactory.quitDriver();
     }
 }

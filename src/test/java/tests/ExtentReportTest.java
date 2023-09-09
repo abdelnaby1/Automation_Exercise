@@ -16,13 +16,13 @@ import java.io.File;
 
 public class ExtentReportTest {
 
-    WebDriver driver;
+//    WebDriver driver;
 //    ExtentReports report;
 //    private static ExtentTest test;
 
 
-    @BeforeTest
-    public void config(){
+//    @BeforeTest
+//    public void config(){
         // ExtentReports, ExtentSparkReporter
 //
 //        ExtentSparkReporter spark = new ExtentSparkReporter(System.getProperty("user.dir") + "/reports//ExtentReport.html");
@@ -40,33 +40,33 @@ public class ExtentReportTest {
 //        report.setSystemInfo("Tester Name",System.getProperty("tester.name"));
 //        report.setSystemInfo("Tester Email",System.getProperty("tester.email"));
 
-    }
+//    }
 
-    @BeforeClass
-    public void setup(){
-        driver = DriverFactory.getDriver();
+//    @BeforeClass
+//    public void setup(){
+//        driver = DriverFactory.getDriver();
+//
+//    }
 
-    }
-
-    @Test
-    public void extentReportDemoTest(){
-//        ExtentTest test = report.createTest("Demo");
-        new LandingPage(driver)
-                .goTo();
-        Assert.assertTrue(true);
-    }
-    @Test(dependsOnMethods = {"extentReportDemoTest"})
-    public void extentReportDemoTest2(){
-        Assert.assertTrue(true);
-    }
-    @AfterTest
-    public void endConfig(){
-//        report.flush();
-
-    }
-    @AfterClass
-    public void teardown(){
-        DriverFactory.quitDriver();
-
-    }
+//    @Test
+//    public void extentReportDemoTest(){
+////        ExtentTest test = report.createTest("Demo");
+//        new LandingPage(driver)
+//                .goTo();
+//        Assert.assertTrue(true);
+//    }
+//    @Test(dependsOnMethods = {"extentReportDemoTest"})
+//    public void extentReportDemoTest2(){
+//        Assert.assertTrue(true);
+//    }
+//    @AfterTest
+//    public void endConfig(){
+////        report.flush();
+//
+//    }
+//    @AfterClass
+//    public void teardown(){
+//        DriverFactory.quitDriver();
+//
+//    }
 }

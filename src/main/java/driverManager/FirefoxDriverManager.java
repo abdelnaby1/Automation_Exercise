@@ -26,14 +26,6 @@ public class FirefoxDriverManager extends DriverManager{
         } else if (DriverManager.executionTypeProperty.equalsIgnoreCase("local headless")) {
             return new FirefoxDriver(getFirefoxOptions());
 
-
-//                if (System.getProperty("maximize").equalsIgnoreCase("true")) {
-////                    BrowserActions.maximizeWindow(driver.get());
-//                } else {
-////                    BrowserActions.setWindowResolution(driver.get());
-//                }
-
-//
         }
         // else return chrome local
         return new FirefoxDriver();

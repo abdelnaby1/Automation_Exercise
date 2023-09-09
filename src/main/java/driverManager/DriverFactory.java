@@ -7,36 +7,38 @@ import org.testng.Reporter;
 import utils.BrowserActions;
 import utils.Helper;
 
+import java.io.IOException;
 import java.util.Arrays;
+import java.util.Properties;
 
 import static org.testng.Assert.fail;
 
 public class DriverFactory {
     private static final ThreadLocal<WebDriver> driver = new ThreadLocal<>();
-    private static String browserTypeProperty = System.getProperty("browser.type");
+    private static final String browserTypeProperty = System.getProperty("browser.type");
 
     public enum BrowserType {
         MOZILLA_FIREFOX("Mozilla Firefox"),
-         GOOGLE_CHROME("Google Chrome"),
-        EDGE("edge"),
+        GOOGLE_CHROME("Google Chrome"),
+        EDGE("Edge"),
         FROM_PROPERTIES(browserTypeProperty);
 
-        private String value;
+        private final String value;
 
         BrowserType(String type) {
             this.value = type;
         }
 
-        protected String getValue() {
+        private String getValue() {
             return value;
         }
     }
 
-    public static synchronized void quitDriver() {
+    public synchronized static void quitDriver() {
         if (null != driver.get()) {
             try {
                 driver.get().quit(); // First quit WebDriver session gracefully
-                driver.remove(); // Remove WebDriver reference from the ThreadLocal variable.
+//                driver.remove(); // Remove WebDriver reference from the ThreadLocal variable.
                 driver.set(null);
             } catch (Exception e) {
                 System.err.println("Unable to gracefully quit WebDriver."+ e); // We'll replace this with actual Loggers later - don't worry !
@@ -54,14 +56,21 @@ public class DriverFactory {
         }
         return driver.get();
     }
-    public static synchronized WebDriver getDriver(BrowserType browserType) {
+    public synchronized WebDriver getDriver(String browser) {
         if (driver.get() == null){
-            return setupDriver(browserType);
-
+            if (browser.equalsIgnoreCase(BrowserType.MOZILLA_FIREFOX.value))
+            {
+                return setupDriver(BrowserType.MOZILLA_FIREFOX);
+            } else if (browser.equalsIgnoreCase(BrowserType.EDGE.value)) {
+                return setupDriver(BrowserType.EDGE);
+            }else {
+                // chrome will be the default
+                return setupDriver(BrowserType.GOOGLE_CHROME);
+            }
         }
         return driver.get();
     }
-    private static synchronized WebDriver setupDriver(BrowserType browserType) {
+    private static WebDriver setupDriver(BrowserType browserType) {
         ITestResult result = Reporter.getCurrentTestResult();
         ITestContext context = result.getTestContext();
         if(browserType == BrowserType.GOOGLE_CHROME
@@ -70,7 +79,6 @@ public class DriverFactory {
 
             driver.set(new ChromeDriverManager().createDriver());
             context.setAttribute("driver", driver.get());
-//            Arrays.stream(context.getClass().getMethods()).forEach(method -> context.setAttribute(method.getName(),driver.get()));
 //            Helper.implicitWait(driver.get());
             if (System.getProperty("maximize").equalsIgnoreCase("true")) {
                 BrowserActions.maximizeWindow(driver.get());
