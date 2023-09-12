@@ -25,7 +25,7 @@ public class DemoTwoTests {
         Boolean isProductExistedOnCart =
                 new LandingPage(driver)
                         .goTo()
-                        .loginValid("ahmedabdelnaby@gmail.com","Ab123456789")
+                        .loginValid("ahmedabdelnaby123@gmail.com","Ab123456789")
                         .addProductToCart(actualProductName)
                         .goToCart()
                         .isProductAdded(actualProductName);

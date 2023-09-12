@@ -15,7 +15,7 @@ public class ExtentReport {
     private static ExtentReports report;
     private static ExtentTest test;
     private static final ThreadLocal<ExtentTest> extentTest = new ThreadLocal<ExtentTest>();
-    public static void initReports() {
+    public synchronized static void initReports() {
         ExtentSparkReporter spark = new ExtentSparkReporter(System.getProperty("user.dir") + "/reports//ExtentReport.html");
         spark.config().setReportName(System.getProperty("report.name"));
         spark.config().setDocumentTitle(System.getProperty("document.title"));
@@ -32,67 +32,67 @@ public class ExtentReport {
         report.setSystemInfo("Tester Name",System.getProperty("tester.name"));
         report.setSystemInfo("Tester Email",System.getProperty("tester.email"));
     }
-    public static  void flushReports() {
+    public synchronized static  void flushReports() {
         report.flush();
     }
-    public static  void createTest(String testcaseName) {
+    public synchronized static  void createTest(String testcaseName) {
         test = report.createTest(testcaseName);
         extentTest.set(test);
     }
-    public static  void removeTest(String testcaseName) {
+    public synchronized static  void removeTest(String testcaseName) {
         report.removeTest(testcaseName);
         extentTest.remove();
     }
 
-    public static  void info(String message) {
+    public synchronized static  void info(String message) {
         if (test != null) {
             extentTest.get().info(message);
         }
     }
 
-    public static  void info(Markup m) {
+    public synchronized static  void info(Markup m) {
         extentTest.get().info(m);
     }
 
-    public static  void pass(String message) {
+    public synchronized static  void pass(String message) {
         extentTest.get().pass(message);
     }
 
-    public static  void pass(Markup m) {
+    public synchronized static  void pass(Markup m) {
         extentTest.get().pass(m);
     }
-    public static  void pass(Media m) {
+    public synchronized static  void pass(Media m) {
         extentTest.get().pass(m);
     }
 
-    public static  void fail(String message) {
+    public synchronized static  void fail(String message) {
         extentTest.get().fail(message);
     }
 
-    public static  void fail(Markup m) {
+    public synchronized static  void fail(Markup m) {
         extentTest.get().fail(m);
     }
 
-    public static  void fail(Throwable t) {
+    public synchronized static  void fail(Throwable t) {
         extentTest.get().fail(t);
     }
 
-    public static  void fail(Media media) {
+    public synchronized static  void fail(Media media) {
         extentTest.get().fail(media);
     }
 
-    public static  void skip(String message) {
+    public synchronized static  void skip(String message) {
         extentTest.get().skip(message);
     }
 
-    public static  void skip(Markup m) {
+    public synchronized static  void skip(Markup m) {
         extentTest.get().skip(m);
     }
 
-    public static  void skip(Throwable t) {
+    public synchronized static  void skip(Throwable t) {
         extentTest.get().skip(t);
     }
-    public static  Media attachScreenshotToExtentReport() {
+    public synchronized static  Media attachScreenshotToExtentReport() {
         return MediaEntityBuilder.createScreenCaptureFromBase64String(
                 ((TakesScreenshot) DriverFactory.getDriver()).getScreenshotAs(OutputType.BASE64), "Screenshot Of the Page").build();
     }
