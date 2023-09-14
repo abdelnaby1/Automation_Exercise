@@ -13,7 +13,7 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ChromeDriverManager extends DriverManager {
+public class ChromeDriverManager implements DriverManager {
 
         @Override
         public WebDriver createDriver() {
