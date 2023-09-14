@@ -40,7 +40,7 @@ public class DriverFactory {
         if (null != driver.get()) {
             try {
                 driver.get().quit(); // First quit WebDriver session gracefully
-//                driver.remove(); // Remove WebDriver reference from the ThreadLocal variable.
+                driver.remove(); // Remove WebDriver reference from the ThreadLocal variable.
                 driver.set(null);
             } catch (Exception e) {
                 System.err.println("Unable to gracefully quit WebDriver."+ e); // We'll replace this with actual Loggers later - don't worry !
