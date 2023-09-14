@@ -5,7 +5,7 @@
         <listener class-name="Listener.RetryListener">
         </listener>
     </listeners>
-    <test verbose="2"  name="Exercises" parallel="methods" thread-count="8">
+    <test verbose="2"  name="Exercises" parallel="classes" thread-count="8">
         <classes>
             <class name="tests.ErrorValidationTests">
             </class>
@@ -13,7 +13,7 @@
             </class>
         </classes>
     </test>
-    <test verbose="2"  name="Exercises 2" parallel="methods" thread-count="8">
+    <test verbose="2"  name="Exercises 2" parallel="classes" thread-count="8">
         <classes>
             <class name="tests.ErrorValidationsTests">
             </class>

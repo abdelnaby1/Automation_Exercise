@@ -1,5 +1,6 @@
 package driverManager;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -43,9 +44,11 @@ public class ChromeDriverManager extends DriverManager {
                 }
             }
             else if (DriverManager.executionTypeProperty.equalsIgnoreCase("local headless")) {
+                WebDriverManager.chromedriver().setup();
                 return new ChromeDriver(getChromeOptions());
             }
             // else return chrome local
+            WebDriverManager.chromedriver().setup();
             return new ChromeDriver();
 
         }
