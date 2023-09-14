@@ -11,6 +11,7 @@
   <url>http://maven.apache.org</url>
   <properties>
     <selenium.version>4.12.1</selenium.version>
+    <selenium-devtools-v113.version>4.11.0</selenium-devtools-v113.version>
     <testng.version>7.8.0</testng.version>
     <json-path.version>2.8.0</json-path.version>
     <json-simple.version>1.1.1</json-simple.version>
@@ -28,11 +29,6 @@
 
   <dependencies>
     <dependency>
-      <groupId>io.github.bonigarcia</groupId>
-      <artifactId>webdrivermanager</artifactId>
-      <version>5.4.1</version>
-    </dependency>
-    <dependency>
       <groupId>org.testng</groupId>
       <artifactId>testng</artifactId>
       <version>${testng.version}</version>
@@ -45,7 +41,7 @@
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>selenium-devtools-v113</artifactId>
-      <version>4.11.0</version>
+      <version>${selenium-devtools-v113.version}</version>
     </dependency>
     <dependency>
       <groupId>com.aventstack</groupId>
