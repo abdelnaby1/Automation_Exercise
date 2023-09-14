@@ -10,7 +10,7 @@
   <name>seleniumFD</name>
   <url>http://maven.apache.org</url>
   <properties>
-    <selenium.version>4.12.1</selenium.version>
+    <selenium.version>4.12.0</selenium.version>
     <selenium-devtools-v113.version>4.11.0</selenium-devtools-v113.version>
     <testng.version>7.8.0</testng.version>
     <json-path.version>2.8.0</json-path.version>
@@ -18,6 +18,7 @@
     <commons-io.version>2.13.0</commons-io.version>
     <aspectj.version>1.9.9.1</aspectj.version>
     <poi-ooxml.version>5.2.3</poi-ooxml.version>
+    <jackson-databind.version>2.15.2</jackson-databind.version>
     <extentreports.version>5.1.0</extentreports.version>
     <slf4j.version>2.0.7</slf4j.version>
     <aspectj.version>1.9.20</aspectj.version>
@@ -42,6 +43,11 @@
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>selenium-devtools-v113</artifactId>
       <version>${selenium-devtools-v113.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>${jackson-databind.version}</version>
     </dependency>
     <dependency>
       <groupId>com.aventstack</groupId>

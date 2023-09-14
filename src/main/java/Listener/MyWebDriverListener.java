@@ -8,24 +8,43 @@ import utils.ElementLocators;
 
 import java.util.Arrays;
 
+import static org.testng.Assert.fail;
+
 
 public class MyWebDriverListener implements WebDriverListener {
     @Override
     public void afterClick(WebElement element) {
-        ExtentReport.info("Click on " + new ElementLocators().getElementLoc(element));
+        try {
+            ExtentReport.info("Click on " + element.toString());
+        } catch (Exception e) {
+            fail(e.getMessage());
+        }
     }
     @Override
     public void afterSendKeys(WebElement element, CharSequence... keysToSend) {
-        ExtentReport.info("Typing "+ Arrays.toString(keysToSend) +" into "+ new ElementLocators().getElementLoc(element));
+        try {
+            ExtentReport.info("Typing "+ Arrays.toString(keysToSend) +" into "+ element.toString());
+        } catch (Exception e) {
+            fail(e.getMessage());
+        }
     }
 
     @Override
     public void afterGet(WebDriver driver, String url) {
-        ExtentReport.info("Navigating to ["+url+"] ");
+        try{
+            ExtentReport.info("Navigating to ["+url+"] ");
+        } catch (Exception e) {
+            fail(e.getMessage());
+        }
     }
     @Override
     public void afterQuit(WebDriver driver) {
-        ExtentReport.info("Quiting Driver");
+        try {
+            ExtentReport.info("Quiting Driver");
+        } catch (Exception e) {
+            fail(e.getMessage());
+        }
+
     }
 
 }
