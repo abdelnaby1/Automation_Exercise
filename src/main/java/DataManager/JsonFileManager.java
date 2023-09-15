@@ -18,8 +18,8 @@ public class JsonFileManager {
     String jsonFilePath;
     String jsonReader;
 
-    public JsonFileManager(String jsonFilePath) {
-        this.jsonFilePath = jsonFilePath;
+    public JsonFileManager(String jsonFile) {
+        this.jsonFilePath = System.getProperty("user.dir") + "/src/test/resources/testData/"+ jsonFile;
 
         try {
             JSONObject data = (JSONObject) new JSONParser().parse(new FileReader(jsonFilePath));
@@ -39,10 +39,20 @@ public class JsonFileManager {
         }
         return testData;
     }
-    public List getAsList(String jsonPath) {
+    public Integer getAsInteger(String jsonPath) {
+        Integer testData = null;
+        try {
+            testData = JsonPath.read(jsonReader, jsonPath);
+        } catch (PathNotFoundException e) {
+            e.printStackTrace();
+            Assert.fail("No results for json path: '" + jsonPath + "' in the json file: '" + this.jsonFilePath + "'");
+        }
+        return testData;
+    }
+    public List getAsListOfString(String jsonPath) {
         List testData = new ArrayList();
         try {
-            testData = (JSONArray) JsonPath.read(jsonReader, jsonPath);
+            testData = JsonPath.read(jsonReader, jsonPath);
         } catch (PathNotFoundException e) {
             e.printStackTrace();
             Assert.fail("No results for json path: '" + jsonPath + "' in the json file: '" + this.jsonFilePath + "'");
