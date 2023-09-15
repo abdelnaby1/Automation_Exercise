@@ -75,8 +75,9 @@ public class ExcelFileManager {
             switch (cel.getCellType()){
                 case STRING -> data.add(cel.getStringCellValue());
                 case NUMERIC ->  data.add(cel.getNumericCellValue());
+                case BOOLEAN -> data.add(cel.getBooleanCellValue());
                 default -> {
-                    Assert.fail("non matching cell value, it should be string or numeric");
+                    Assert.fail("non matching cell value, it should be string, numeric or boolean");
                 }
             }
         }
