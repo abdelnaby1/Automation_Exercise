@@ -45,7 +45,6 @@ public class DemoTwoTests {
 
 
         new LandingPage(driver).goTo();
-
         ((JavascriptExecutor)driver).executeScript("localStorage.setItem('token',arguments[0])",token);
 
         Boolean isProductDisplayed =

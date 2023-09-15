@@ -14,9 +14,9 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
-public class EdgeDriverManager extends DriverManager{
+public class EdgeDriverManager implements DriverManager{
     @Override
-    protected WebDriver createDriver() {
+    public WebDriver createDriver() {
         if (DriverManager.executionTypeProperty.equalsIgnoreCase("remote")) {
 
                 try {

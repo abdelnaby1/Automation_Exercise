@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.ITestResult;
 
-public abstract class DriverManager {
+public interface DriverManager {
 
 
     static final String executionTypeProperty = System.getProperty("execution.type");
@@ -28,6 +28,6 @@ public abstract class DriverManager {
             return value;
         }
     }
-    protected abstract WebDriver createDriver();
+        WebDriver createDriver();
 
 }

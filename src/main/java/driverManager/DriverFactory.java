@@ -1,6 +1,8 @@
 package driverManager;
 
+import Listener.MyWebDriverListener;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.events.EventFiringDecorator;
 import org.testng.ITestContext;
 import org.testng.ITestResult;
 import org.testng.Reporter;
@@ -73,11 +75,13 @@ public class DriverFactory {
     private static WebDriver setupDriver(BrowserType browserType) {
         ITestResult result = Reporter.getCurrentTestResult();
         ITestContext context = result.getTestContext();
+        MyWebDriverListener listener = new MyWebDriverListener();//Create instance of Listener Class
+        EventFiringDecorator<WebDriver> decorator = new EventFiringDecorator<>(listener); //Pass listener to constructor
         if(browserType == BrowserType.GOOGLE_CHROME
                     || (browserType == BrowserType.FROM_PROPERTIES && browserTypeProperty.equalsIgnoreCase("google chrome"))) {
 
 
-            driver.set(new ChromeDriverManager().createDriver());
+            driver.set(decorator.decorate(new ChromeDriverManager().createDriver()));
             context.setAttribute("driver", driver.get());
 //            Helper.implicitWait(driver.get());
             if (System.getProperty("maximize").equalsIgnoreCase("true")) {
@@ -90,7 +94,7 @@ public class DriverFactory {
         else if (browserType == BrowserType.MOZILLA_FIREFOX
                 || (browserType == BrowserType.FROM_PROPERTIES && browserTypeProperty.equalsIgnoreCase("mozilla firefox"))){
 
-            driver.set(new FirefoxDriverManager().createDriver());
+            driver.set(decorator.decorate(new FirefoxDriverManager().createDriver()));
             context.setAttribute("driver", driver.get());
 //            Helper.implicitWait(driver.get());
             if (System.getProperty("maximize").equalsIgnoreCase("true")) {
@@ -101,7 +105,7 @@ public class DriverFactory {
         }
         else if (browserType == BrowserType.EDGE
                 || (browserType == BrowserType.FROM_PROPERTIES && browserTypeProperty.equalsIgnoreCase("edge"))){
-            driver.set(new EdgeDriverManager().createDriver());
+            driver.set(decorator.decorate(new EdgeDriverManager().createDriver()));
             context.setAttribute("driver", driver.get());
 //            Helper.implicitWait(driver.get());
             if (System.getProperty("maximize").equalsIgnoreCase("true")) {
