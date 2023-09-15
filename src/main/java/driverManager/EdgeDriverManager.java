@@ -1,5 +1,6 @@
 package driverManager;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -34,10 +35,12 @@ public class EdgeDriverManager implements DriverManager{
                 e.printStackTrace();
             }
         } else if (DriverManager.executionTypeProperty.equalsIgnoreCase("local headless")) {
+            WebDriverManager.edgedriver().setup();
             return new EdgeDriver(getEdgeOptions());
 
         }
         // else return chrome local
+        WebDriverManager.edgedriver().setup();
         return new EdgeDriver();
     }
     private EdgeOptions getEdgeOptions() {
