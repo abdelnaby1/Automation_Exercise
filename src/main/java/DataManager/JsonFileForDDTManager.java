@@ -19,8 +19,8 @@ import java.util.List;
 public class JsonFileForDDTManager {
     String jsonFilePath;
     String jsonContent;
-    public JsonFileForDDTManager(String jsonFilePath) {
-        this.jsonFilePath = jsonFilePath;
+    public JsonFileForDDTManager(String jsonFile) {
+        this.jsonFilePath = System.getProperty("user.dir") + "/src/test/resources/testData/"+ jsonFile;
         try {
             jsonContent = FileUtils.readFileToString(new File(jsonFilePath), StandardCharsets.UTF_8);
         } catch (IOException e) {
@@ -28,7 +28,7 @@ public class JsonFileForDDTManager {
            Assert.fail(e.getMessage());
         }
     }
-    public List<HashMap<Object,Object>> getJsonDataToMap(){
+    public List<HashMap<Object,Object>> getJsonDataAsMap(){
         ObjectMapper mapper = new ObjectMapper();
         List<HashMap<Object,Object>> data = null;
         try {

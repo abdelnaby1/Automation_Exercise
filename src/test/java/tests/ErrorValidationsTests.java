@@ -24,7 +24,7 @@ public class ErrorValidationsTests {
     @DataProvider
     public Object[][] getData(){
         JsonFileForDDTManager manager = new JsonFileForDDTManager(System.getProperty("user.dir")+"/src/test/resources/testData/purchaseOrder.json");
-        List<HashMap<Object, Object>> data = manager.getJsonDataToMap();
+        List<HashMap<Object, Object>> data = manager.getJsonDataAsMap();
         return new Object[][] {{data.get(0)},{data.get(1)}};
     }
     @Test(dataProvider = "getData")
