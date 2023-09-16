@@ -1,24 +1,22 @@
-package DataManager;
+package DataManager.reader;
 
 import com.jayway.jsonpath.JsonPath;
 import com.jayway.jsonpath.PathNotFoundException;
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.testng.Assert;
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class JsonFileManager {
-    String jsonFilePath;
-    String jsonReader;
+public class JsonReader {
+    private String jsonFilePath;
+    private String jsonReader;
 
-    public JsonFileManager(String jsonFile) {
+    public JsonReader(String jsonFile) {
         this.jsonFilePath = System.getProperty("user.dir") + "/src/test/resources/testData/"+ jsonFile;
 
         try {

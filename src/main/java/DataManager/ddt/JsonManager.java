@@ -1,26 +1,21 @@
-package DataManager;
+package DataManager.ddt;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.io.FileUtils;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 import org.testng.Assert;
 
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.List;
 
-public class JsonFileForDDTManager {
-    String jsonFilePath;
-    String jsonContent;
-    public JsonFileForDDTManager(String jsonFile) {
-        this.jsonFilePath = System.getProperty("user.dir") + "/src/test/resources/testData/"+ jsonFile;
+public class JsonManager  {
+    private String jsonContent;
+    public JsonManager(String jsonFile) {
+        String jsonFilePath = System.getProperty("user.dir") + "/src/test/resources/testData/" + jsonFile;
         try {
             jsonContent = FileUtils.readFileToString(new File(jsonFilePath), StandardCharsets.UTF_8);
         } catch (IOException e) {
