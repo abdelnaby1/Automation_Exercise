@@ -146,7 +146,7 @@
               </property>
               <property>
                 <name>listener</name>
-                <value>Listener.TestngListener</value>
+                <value>listeners.TestngListener</value>
               </property>
             </properties>
           </configuration>

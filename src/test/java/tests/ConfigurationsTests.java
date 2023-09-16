@@ -1,6 +1,6 @@
 package tests;
 
-import DataManager.ddt.ExcelManager;
+import dataManager.ddt.ExcelManager;
 import driverManager.DriverFactory;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;

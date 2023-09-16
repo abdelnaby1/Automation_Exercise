@@ -1,4 +1,4 @@
-package DataManager.reader;
+package dataManager.reader;
 
 import com.jayway.jsonpath.JsonPath;
 import com.jayway.jsonpath.PathNotFoundException;

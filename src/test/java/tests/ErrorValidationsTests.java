@@ -1,6 +1,6 @@
 package tests;
 
-import DataManager.ddt.JsonManager;
+import dataManager.ddt.JsonManager;
 import driverManager.DriverFactory;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;

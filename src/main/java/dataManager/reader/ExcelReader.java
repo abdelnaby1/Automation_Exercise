@@ -1,4 +1,4 @@
-package DataManager.reader;
+package dataManager.reader;
 
 import org.apache.poi.ss.usermodel.*;
 import org.testng.Assert;

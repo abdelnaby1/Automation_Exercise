@@ -1,4 +1,4 @@
-package Reporting;
+package reporting;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
@@ -9,7 +9,6 @@ import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import driverManager.DriverFactory;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
 
 public class ExtentReport {
     private static ExtentReports report;

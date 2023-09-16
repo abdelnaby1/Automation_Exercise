@@ -1,6 +1,6 @@
-package Listener;
+package listeners;
 
-import Reporting.ExtentReport;
+import reporting.ExtentReport;
 import org.testng.IRetryAnalyzer;
 import org.testng.ITestResult;
 

@@ -1,6 +1,6 @@
-package Listener;
+package listeners;
 
-import Reporting.ExtentReport;
+import reporting.ExtentReport;
 import com.aventstack.extentreports.markuputils.ExtentColor;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 import org.openqa.selenium.WebDriver;

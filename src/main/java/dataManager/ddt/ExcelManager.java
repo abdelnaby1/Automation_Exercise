@@ -1,4 +1,4 @@
-package DataManager.ddt;
+package dataManager.ddt;
 
 import org.apache.poi.ss.usermodel.*;
 import org.testng.Assert;

@@ -1,17 +1,12 @@
 package driverManager;
 
-import Listener.MyWebDriverListener;
+import listeners.MyWebDriverListener;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.events.EventFiringDecorator;
 import org.testng.ITestContext;
 import org.testng.ITestResult;
 import org.testng.Reporter;
 import utils.BrowserActions;
-import utils.Helper;
-
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.Properties;
 
 import static org.testng.Assert.fail;
 
