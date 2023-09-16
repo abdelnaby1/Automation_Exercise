@@ -26,6 +26,8 @@
     <maven-surefire-plugin.version>3.1.2</maven-surefire-plugin.version>
     <maven-resources-plugin.version>3.3.1</maven-resources-plugin.version>
     <lombok.version>1.18.28</lombok.version>
+    <mysql-connector-j>8.1.0</mysql-connector-j>
+
   </properties>
 
   <dependencies>
@@ -102,6 +104,11 @@
       <artifactId>lombok</artifactId>
       <version>${lombok.version}</version>
       <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.mysql</groupId>
+      <artifactId>mysql-connector-j</artifactId>
+      <version>${mysql-connector-j}</version>
     </dependency>
   </dependencies>
   <build>
@@ -201,7 +208,7 @@
       </build>
     </profile>
     <profile>
-      <id>some</id>
+      <id>db</id>
       <build>
         <plugins>
           <plugin>
@@ -210,7 +217,7 @@
             <version>${maven-surefire-plugin.version}</version>
             <configuration>
               <suiteXmlFiles>
-                <suiteXmlFile>src/test/resources/suites/testSomething.xml</suiteXmlFile>
+                <suiteXmlFile>src/test/resources/suites/db.xml</suiteXmlFile>
               </suiteXmlFiles>
             </configuration>
           </plugin>
