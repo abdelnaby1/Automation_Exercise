@@ -1,6 +1,6 @@
 package tests;
 
-import DataManager.JsonFileForDDTManager;
+import DataManager.ddt.JsonManager;
 import driverManager.DriverFactory;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
@@ -23,7 +23,7 @@ public class ErrorValidationsTests {
     }
     @DataProvider
     public Object[][] getData(){
-        JsonFileForDDTManager manager = new JsonFileForDDTManager("purchaseOrder.json");
+        JsonManager manager = new JsonManager("purchaseOrder.json");
         List<HashMap<Object, Object>> data = manager.getJsonDataAsMap();
         return new Object[][] {{data.get(0)},{data.get(1)}};
     }

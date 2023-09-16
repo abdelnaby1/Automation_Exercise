@@ -1,6 +1,6 @@
 package tests;
 
-import DataManager.ExcelFileManager;
+import DataManager.ddt.ExcelManager;
 import driverManager.DriverFactory;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
@@ -8,19 +8,17 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import java.util.List;
-
 public class ConfigurationsTests {
     // example of ddt using Excel sheet
     WebDriver driver;
-    ExcelFileManager excelFileManager;
+    ExcelManager excelFileManager;
     @BeforeMethod()
     public void setup(){
         driver = DriverFactory.getDriver();
     }
     @DataProvider
     public Object[][] getSomeData(){
-        excelFileManager= new ExcelFileManager("testData.xlsx");
+        excelFileManager= new ExcelManager("testData.xlsx");
         var data = excelFileManager
                         .switchToSheet("Sheet1")
                         .getData("Login");

@@ -1,4 +1,4 @@
-package DataManager;
+package DataManager.ddt;
 
 import org.apache.poi.ss.usermodel.*;
 import org.testng.Assert;
@@ -10,11 +10,11 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class ExcelFileManager {
+public class ExcelManager  {
     String excelFilePath;
     FileInputStream file;
     Sheet sheet;
-    public ExcelFileManager(String excelFile) {
+    public ExcelManager(String excelFile) {
         this.excelFilePath = System.getProperty("user.dir") + "/src/test/resources/testData/"+ excelFile;
         try {
             file = new FileInputStream(excelFilePath);
@@ -23,15 +23,15 @@ public class ExcelFileManager {
             Assert.fail(e.getMessage());
         }
     }
-    public ExcelFileManager(String excelFile,String sheetName) {
+    public ExcelManager(String excelFile, String sheetName) {
         this(excelFile);
         this.switchToSheet(sheetName);
     }
-    public ExcelFileManager(String excelFile,int sheetIndex) {
+    public ExcelManager(String excelFile, int sheetIndex) {
         this(excelFile);
         this.switchToSheet(sheetIndex);
     }
-    public ExcelFileManager switchToSheet(Object sheetNameOrInx){
+    public ExcelManager switchToSheet(Object sheetNameOrInx){
         if (sheetNameOrInx instanceof String){
             try (Workbook workbooks = WorkbookFactory.create(file)){
                 sheet = workbooks.getSheet(((String) sheetNameOrInx));
@@ -71,11 +71,11 @@ public class ExcelFileManager {
         Iterator<Cell> cellIterator = wantedRow.cellIterator();
         cellIterator.next();
         while(cellIterator.hasNext()){
-            Cell cel = cellIterator.next();
-            switch (cel.getCellType()){
-                case STRING -> data.add(cel.getStringCellValue());
-                case NUMERIC ->  data.add(cel.getNumericCellValue());
-                case BOOLEAN -> data.add(cel.getBooleanCellValue());
+            Cell cell = cellIterator.next();
+            switch (cell.getCellType()){
+                case STRING -> data.add(cell.getStringCellValue());
+                case NUMERIC ->  data.add(cell.getNumericCellValue());
+                case BOOLEAN -> data.add(cell.getBooleanCellValue());
                 default -> {
                     Assert.fail("non matching cell value, it should be string, numeric or boolean");
                 }
