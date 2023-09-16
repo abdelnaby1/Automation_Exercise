@@ -1,18 +1,25 @@
 package driverManager;
 
 import listeners.MyWebDriverListener;
+import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.events.EventFiringDecorator;
+import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.ITestResult;
 import org.testng.Reporter;
 import utils.BrowserActions;
+
+import java.net.MalformedURLException;
+import java.net.URL;
 
 import static org.testng.Assert.fail;
 
 public class DriverFactory {
     private static final ThreadLocal<WebDriver> driver = new ThreadLocal<>();
     private static final String browserTypeProperty = System.getProperty("browser.type");
+    private static final String onBrowserStack = System.getProperty("execution.browserstack");
 
     public enum BrowserType {
         MOZILLA_FIREFOX("Mozilla Firefox"),
@@ -68,6 +75,15 @@ public class DriverFactory {
         return driver.get();
     }
     private static WebDriver setupDriver(BrowserType browserType) {
+        if(onBrowserStack.equalsIgnoreCase("true")){
+            MutableCapabilities caps = new MutableCapabilities();
+            try {
+                driver.set(new RemoteWebDriver(new URL("https://hub.browserstack.com/wd/hub"),caps));
+                return driver.get();
+            } catch (MalformedURLException e) {
+                Assert.fail(e.getMessage());
+            }
+        }
         ITestResult result = Reporter.getCurrentTestResult();
         ITestContext context = result.getTestContext();
         MyWebDriverListener listener = new MyWebDriverListener();//Create instance of Listener Class
