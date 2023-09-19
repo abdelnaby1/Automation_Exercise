@@ -27,7 +27,7 @@
     <maven-resources-plugin.version>3.3.1</maven-resources-plugin.version>
     <lombok.version>1.18.28</lombok.version>
     <mysql-connector-j>8.1.0</mysql-connector-j>
-
+    <cucumber.version>7.14.0</cucumber.version>
   </properties>
 
   <dependencies>
@@ -45,6 +45,21 @@
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>selenium-java</artifactId>
       <version>${selenium.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.cucumber</groupId>
+      <artifactId>cucumber-java</artifactId>
+      <version>${cucumber.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.cucumber</groupId>
+      <artifactId>cucumber-core</artifactId>
+      <version>${cucumber.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.cucumber</groupId>
+      <artifactId>cucumber-testng</artifactId>
+      <version>${cucumber.version}</version>
     </dependency>
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
