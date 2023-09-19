@@ -21,4 +21,20 @@
             </class>
         </classes>
     </test>
+    <test verbose="2"  name="Exercises 3" parallel="classes" thread-count="8">
+        <classes>
+            <class name="tests.ErrorValidationsTests">
+            </class>
+            <class name="tests.DemoTwoTests">
+            </class>
+        </classes>
+    </test>
+    <test verbose="2"  name="Exercises 4" parallel="classes" thread-count="8">
+        <classes>
+            <class name="tests.ErrorValidationTests">
+            </class>
+            <class name="tests.DemoTests">
+            </class>
+        </classes>
+    </test>
 </suite>
