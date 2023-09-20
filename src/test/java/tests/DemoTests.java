@@ -1,11 +1,11 @@
 package tests;
 
+
 import driverManager.DriverFactory;
 import org.openqa.selenium.*;
 import org.testng.annotations.*;
 import pages.CartPage;
 import pages.LandingPage;
-import utils.BrowserActions;
 
 import static org.testng.Assert.assertTrue;
 
@@ -61,6 +61,5 @@ public class DemoTests {
     @AfterMethod
     public void teardown(){
        DriverFactory.quitDriver();
-
     }
 }
