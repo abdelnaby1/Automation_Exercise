@@ -1,9 +1,9 @@
 package driverManager;
 
-import listeners.MyWebDriverListener;
 import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.support.ThreadGuard;
 import org.openqa.selenium.support.events.EventFiringDecorator;
 import org.testng.Assert;
 import org.testng.ITestContext;
@@ -38,7 +38,7 @@ public class DriverFactory {
         }
     }
 
-    public synchronized static void quitDriver() {
+    public static void quitDriver() {
         if (null != driver.get()) {
             try {
                 driver.get().quit(); // First quit WebDriver session gracefully
@@ -74,25 +74,17 @@ public class DriverFactory {
         }
         return driver.get();
     }
+    public static WebDriver setupDriver() {
+         return setupDriver(BrowserType.FROM_PROPERTIES);
+    }
     private static WebDriver setupDriver(BrowserType browserType) {
-        if(onBrowserStack.equalsIgnoreCase("true")){
-            MutableCapabilities caps = new MutableCapabilities();
-            try {
-                driver.set(new RemoteWebDriver(new URL("https://hub.browserstack.com/wd/hub"),caps));
-                return driver.get();
-            } catch (MalformedURLException e) {
-                Assert.fail(e.getMessage());
-            }
-        }
         ITestResult result = Reporter.getCurrentTestResult();
         ITestContext context = result.getTestContext();
-        MyWebDriverListener listener = new MyWebDriverListener();//Create instance of Listener Class
-        EventFiringDecorator<WebDriver> decorator = new EventFiringDecorator<>(listener); //Pass listener to constructor
         if(browserType == BrowserType.GOOGLE_CHROME
                     || (browserType == BrowserType.FROM_PROPERTIES && browserTypeProperty.equalsIgnoreCase("google chrome"))) {
 
 
-            driver.set(decorator.decorate(new ChromeDriverManager().createDriver()));
+            driver.set(ThreadGuard.protect(new ChromeDriverManager().createDriver()));
             context.setAttribute("driver", driver.get());
 //            Helper.implicitWait(driver.get());
             if (System.getProperty("maximize").equalsIgnoreCase("true")) {
@@ -105,7 +97,7 @@ public class DriverFactory {
         else if (browserType == BrowserType.MOZILLA_FIREFOX
                 || (browserType == BrowserType.FROM_PROPERTIES && browserTypeProperty.equalsIgnoreCase("mozilla firefox"))){
 
-            driver.set(decorator.decorate(new FirefoxDriverManager().createDriver()));
+            driver.set(ThreadGuard.protect(new FirefoxDriverManager().createDriver()));
             context.setAttribute("driver", driver.get());
 //            Helper.implicitWait(driver.get());
             if (System.getProperty("maximize").equalsIgnoreCase("true")) {
@@ -116,7 +108,7 @@ public class DriverFactory {
         }
         else if (browserType == BrowserType.EDGE
                 || (browserType == BrowserType.FROM_PROPERTIES && browserTypeProperty.equalsIgnoreCase("edge"))){
-            driver.set(decorator.decorate(new EdgeDriverManager().createDriver()));
+            driver.set(ThreadGuard.protect(new EdgeDriverManager().createDriver()));
             context.setAttribute("driver", driver.get());
 //            Helper.implicitWait(driver.get());
             if (System.getProperty("maximize").equalsIgnoreCase("true")) {

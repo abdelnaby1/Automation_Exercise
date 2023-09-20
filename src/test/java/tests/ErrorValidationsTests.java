@@ -1,6 +1,7 @@
 package tests;
 
 import dataManager.ddt.JsonManager;
+
 import driverManager.DriverFactory;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
@@ -20,6 +21,7 @@ public class ErrorValidationsTests {
     @BeforeMethod
     public void setup(){
         driver = DriverFactory.getDriver();
+
     }
     @DataProvider
     public Object[][] getData(){
@@ -57,5 +59,6 @@ public class ErrorValidationsTests {
     @AfterMethod
     public void teardown(){
         DriverFactory.quitDriver();
+
     }
 }
