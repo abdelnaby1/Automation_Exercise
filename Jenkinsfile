@@ -12,9 +12,9 @@ node {
         // Run the maven build
         withEnv(["MVN_HOME=$mvnHome"]) {
             if (isUnix()) {
-                sh '"$MVN_HOME/" mvn test -Pcu'
+                sh '"$MVN_HOME/" clean test -Pcu'
             } else {
-                bat(/"%MVN_HOME%\ mvn test -Pcu/)
+                bat(/"%MVN_HOME%\ clean test -Pcu/)
             }
         }
     }
