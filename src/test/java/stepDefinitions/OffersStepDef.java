@@ -2,6 +2,8 @@ package stepDefinitions;
 
 import io.cucumber.java.en.Then;
 import org.testng.Assert;
+import runners.TestContext;
+import runners.TestRunner;
 
 public class OffersStepDef {
     TestContext testContext;
