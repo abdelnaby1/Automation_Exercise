@@ -7,7 +7,7 @@ import org.testng.annotations.DataProvider;
 @CucumberOptions(features = {"src/test/resources/features"},
         glue = {"stepDefinitions","hooks"}
         ,monochrome = true
-        ,tags = "@search or @searchAgain"
+        ,tags = "@search"
         ,plugin = {"summary","pretty",
                 "json:target/cucumber-reports/CucumberTestReport.json",
                 "json:target/cucumber-reports/cucumber.json",

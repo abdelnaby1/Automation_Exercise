@@ -10,11 +10,6 @@ public class HomePageStepDe {
     public HomePageStepDe(TestContext testContext){
         this.testContext = testContext;
     }
-//    @Before
-//    public void beforeScenario() {
-//        driver = DriverFactory.setupDriver();
-//        homePage =  new HomePage(driver);
-//    }
     @Given("User is on GreenCart Landing page")
     public void user_is_on_green_cart_landing_page() {
         testContext.homePage.openHomePage();

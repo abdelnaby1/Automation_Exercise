@@ -11,9 +11,14 @@ import driverManager.DriverFactory;
 import io.cucumber.plugin.EventListener;
 import io.cucumber.plugin.event.*;
 import com.aventstack.extentreports.Status;
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import reporting.AllureManager;
+import utils.PropertiesReader;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;

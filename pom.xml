@@ -325,11 +325,13 @@
               <properties>
                 <property>
                   <name>dataproviderthreadcount</name>
-                  <value>5</value>
+                  <value>3</value>
                 </property>
               </properties>
-<!--              <parallel>methods</parallel>-->
+              <parallel>methods</parallel>
 <!--              <threadCount>4</threadCount>-->
+<!--              <useUnlimitedThreads>true</useUnlimitedThreads>-->
+<!--              <testFailureIgnore>true</testFailureIgnore>-->
               <suiteXmlFiles>
                 <suiteXmlFile>src/test/resources/cucumber/suit.xml</suiteXmlFile>
               </suiteXmlFiles>

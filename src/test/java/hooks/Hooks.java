@@ -2,14 +2,9 @@ package hooks;
 
 import driverManager.DriverFactory;
 import io.cucumber.java.*;
-import io.qameta.allure.Allure;
-import io.qameta.allure.AllureLifecycle;
-import io.qameta.allure.Attachment;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
-import org.testng.annotations.TestInstance;
 import reporting.AllureManager;
 import utils.PropertiesReader;
 
@@ -34,10 +29,10 @@ public class Hooks {
         AllureManager.setAllureEnvironmentInformation();
         try {
             FileUtils.deleteDirectory(new File("allure-results"));
+            FileUtils.deleteDirectory(new File("screenshots"));
         } catch (IOException e) {
             System.out.println("allure-result not deleted");
         }
-        AllureManager.setAllureEnvironmentInformation();
     }
     @AfterAll
     public static void afterAll() {

@@ -1,0 +1,30 @@
+#  docker-compose -f docker-compose.yml up --scale chrome=4 --scale edge=0 --scale firefox=0 -d
+#  http://localhost:4444/grid/console
+#  docker-compose -f docker-compose.yml down --remove-orphans
+#doker compose restart
+version: "3"
+
+services:
+  selenium-hub:
+    image: selenium/hub
+    ports:
+      - "4442:4442"
+      - "4443:4443"
+      - "4444:4444"
+    environment:
+      GRID_MAX_SESSION: 16
+      GRID_BROWSER_TIMEOUT: 300
+      GRID_TIMEOUT: 300
+
+  chrome:
+    image: selenium/node-chrome
+    shm_size: 4gb
+    depends_on:
+      - selenium-hub
+    environment:
+      - SE_EVENT_BUS_HOST=selenium-hub
+      - SE_EVENT_BUS_PUBLISH_PORT=4442
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+
+
+
