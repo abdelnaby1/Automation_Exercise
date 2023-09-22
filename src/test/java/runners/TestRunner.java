@@ -1,20 +1,18 @@
 package runners;
 
-import driverManager.DriverFactory;
-import greenKart.pages.HomePage;
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
-import org.openqa.selenium.WebDriver;
 import org.testng.annotations.DataProvider;
 
 @CucumberOptions(features = {"src/test/resources/features"},
-        glue = {"stepDefinitions"}
+        glue = {"stepDefinitions","hooks"}
         ,monochrome = true
-        ,tags = "@search"
+        ,tags = "@search or @searchAgain"
         ,plugin = {"summary","pretty",
                 "json:target/cucumber-reports/CucumberTestReport.json",
                 "json:target/cucumber-reports/cucumber.json",
                 "html:cucumber-reports/report.html",
+                "listeners.CucumberListener",
                 "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm",
                 "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"
         }

@@ -2,8 +2,7 @@ package stepDefinitions;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
-import runners.TestContext;
-import runners.TestRunner;
+import hooks.TestContext;
 
 public class HomePageStepDe {
     String productName;

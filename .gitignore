@@ -7,6 +7,14 @@ reports/
 reports/ExtentReport.html
 /allure-results
 cucumber-reports
+test-output
+/test-output
+PDFReport
+/PDFReport
+ExtentReports
+/ExtentReports
+screenshots
+/screenshots
 ### IntelliJ IDEA ###
 .idea/modules.xml
 .idea/jarRepositories.xml
