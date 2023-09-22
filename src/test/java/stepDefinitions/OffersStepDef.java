@@ -2,8 +2,7 @@ package stepDefinitions;
 
 import io.cucumber.java.en.Then;
 import org.testng.Assert;
-import runners.TestContext;
-import runners.TestRunner;
+import hooks.TestContext;
 
 public class OffersStepDef {
     TestContext testContext;
@@ -88,7 +87,7 @@ public class OffersStepDef {
                         .searchFor(searchTerm)
                         .getProductName();
 
-        Assert.assertEquals(productOnOffers,testContext.productName,"The product should be exist on offers page");
+        Assert.assertEquals(productOnOffers,testContext.productName ,"The product should be exist on offers page");
 
     }
 }

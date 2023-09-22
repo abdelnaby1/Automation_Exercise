@@ -29,9 +29,28 @@
     <mysql-connector-j>8.1.0</mysql-connector-j>
     <cucumber.version>7.14.0</cucumber.version>
     <allure-cucumber7-jvm.version>2.24.0</allure-cucumber7-jvm.version>
+
+    <allure-testng.version>2.24.0</allure-testng.version>
+    <allure-maven.version>2.11.2</allure-maven.version>
+    <allure-maven-report.version>2.10.0</allure-maven-report.version>
   </properties>
 
   <dependencies>
+    <dependency>
+      <groupId>io.qameta.allure</groupId>
+      <artifactId>allure-testng</artifactId>
+      <version>${allure-testng.version}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.slf4j</groupId>
+          <artifactId>slf4j-api</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.testng</groupId>
+          <artifactId>testng</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
     <dependency>
       <groupId>io.github.bonigarcia</groupId>
       <artifactId>webdrivermanager</artifactId>
@@ -143,10 +162,30 @@
       <artifactId>mysql-connector-j</artifactId>
       <version>${mysql-connector-j}</version>
     </dependency>
+    <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+      <version>32.1.2-jre</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.github.automatedowl</groupId>
+      <artifactId>allure-environment-writer</artifactId>
+      <version>1.0.0</version>
+    </dependency>
+
   </dependencies>
   <build>
     <pluginManagement>
       <plugins>
+        <plugin>
+          <groupId>io.qameta.allure</groupId>
+          <artifactId>allure-maven</artifactId>
+          <version>${allure-maven.version}</version>
+          <configuration>
+            <reportVersion>${allure-maven-report.version}</reportVersion>
+          </configuration>
+        </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-compiler-plugin</artifactId>
