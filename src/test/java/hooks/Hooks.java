@@ -29,7 +29,7 @@ public class Hooks {
         AllureManager.setAllureEnvironmentInformation();
         try {
             FileUtils.deleteDirectory(new File("allure-results"));
-            FileUtils.deleteDirectory(new File("screenshots"));
+//            FileUtils.deleteDirectory(new File("screenshots"));
         } catch (IOException e) {
             System.out.println("allure-result not deleted");
         }

@@ -6,9 +6,10 @@ import org.testng.annotations.DataProvider;
 
 @CucumberOptions(features = {"src/test/resources/features"},
         glue = {"stepDefinitions","hooks"}
-        ,monochrome = true
-        ,tags = "@search"
+        ,monochrome = false
+        ,tags = "@search or @searchAgain or @checkout"
         ,plugin = {"summary","pretty",
+                "rerun:target/failedRerun.txt",
                 "json:target/cucumber-reports/CucumberTestReport.json",
                 "json:target/cucumber-reports/cucumber.json",
                 "html:cucumber-reports/report.html",

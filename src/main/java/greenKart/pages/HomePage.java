@@ -16,6 +16,14 @@ public class HomePage {
     private By submitBtn = By.cssSelector("button.search-button");
     private By resultName =  By.cssSelector(".products-wrapper .products:first-child  .product-name");
     private By offersLink = By.linkText("Top Deals");
+    private By addToCartBtn(int productIdx){
+        return By.xpath("(//*[contains(text(),'ADD TO CART')])["+productIdx+"]");
+    }
+    private By qtyField(int productIdx){
+        return By.xpath("(//*[contains(@class,'quantity')])["+productIdx+"]");
+    }
+    private By cartLink = By.xpath("//a[contains(@class,'cart-icon')]");
+    private By checkoutBtn = By.xpath("//button[contains(text(),'PROCEED TO CHECKOUT')]");
     public HomePage(WebDriver driver) {
         this.driver = driver;
     }
@@ -37,5 +45,19 @@ public class HomePage {
     public OffersPage openOffersPage(){
         new ElementActions(driver).click(offersLink);
         return new OffersPage(driver);
+    }
+
+    public HomePage addProductToCart(int productIdx, int qty,String shortName){
+        new ElementActions(driver)
+//                .waitForElementToContainsText(resultName,shortName)
+                .type(qtyField(productIdx), String.valueOf(qty),true)
+                .click(addToCartBtn(productIdx));
+        return this;
+    }
+    public CartPage goToCart(){
+        new ElementActions(driver)
+                .click(cartLink)
+                .click(checkoutBtn);
+        return new CartPage(driver);
     }
 }

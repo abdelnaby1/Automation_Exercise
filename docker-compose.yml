@@ -2,6 +2,9 @@
 #  http://localhost:4444/grid/console
 #  docker-compose -f docker-compose.yml down --remove-orphans
 #doker compose restart
+
+#  for running selenium grid without docker
+#  java -jar selenium-server-4.12.0.jar standalone --selenium-manager true --override-max-sessions true --max-sessions 12
 version: "3"
 
 services:

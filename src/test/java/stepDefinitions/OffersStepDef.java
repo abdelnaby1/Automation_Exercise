@@ -1,6 +1,7 @@
 package stepDefinitions;
 
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import org.testng.Assert;
 import hooks.TestContext;
 
@@ -10,8 +11,18 @@ public class OffersStepDef {
         this.testContext = testContext;
     }
 
-    @Then("The product should exist on offers page when the user search for {string}")
+    @Then("^The product should exist on offers page when the user search for (.+) with ok$")
     public void the_product_should_exist_on_offers(String searchTerm) {
+        String productOnOffers =
+                testContext.homePage.openOffersPage()
+                        .searchFor(searchTerm)
+                        .getProductName();
+
+        Assert.assertEquals(productOnOffers,testContext.productName,"The product should be exist on offers page");
+
+    }
+    @Then("The product should exist on offers page when the user search for {string}")
+    public void the_product_should_exist_on_offers1(String searchTerm) {
         String productOnOffers =
                 testContext.homePage.openOffersPage()
                         .searchFor(searchTerm)
