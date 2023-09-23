@@ -4,12 +4,11 @@ pipeline {
     stages {
         stage('Test') {
             steps {
-                bat "/opt/homebrew/bin/maven/mvn clean test -Pcu"
+                sh "/opt/homebrew/bin/mvn clean test -Pcu"
             }
 
             post {
-                // If Maven was able to run the tests, even if some of the test
-                // failed, record the test results and archive the jar file.
+
                 success {
                    publishHTML([
                        allowMissing: false,
