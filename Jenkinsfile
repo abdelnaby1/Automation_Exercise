@@ -1,25 +1,49 @@
-node {
-    def mvnHome
-    stage('Preparation') { // for display purposes
-        // Get some code from a GitHub repository
-        git 'https://github.com/abdelnaby1/Automation_Exercise.git'
-        // Get the Maven tool.
-        // ** NOTE: This 'M3' Maven tool must be configured
-        // **       in the global configuration.
-        mvnHome = tool 'MAVEN_HOME'
-    }
-    stage('Build') {
-        // Run the maven build
-        withEnv(["MVN_HOME=$mvnHome"]) {
-            if (isUnix()) {
-                sh '"$MVN_HOME/bin/mvn" test -Pcu'
-            } else {
-               bat(/"%MVN_HOME%\bin\mvn" test -Pcu/)
+pipeline {
+    agent any
+
+    stages {
+        stage('Test') {
+            steps {
+                bat "mvn clean test -Pcu"
+            }
+
+            post {
+                // If Maven was able to run the tests, even if some of the test
+                // failed, record the test results and archive the jar file.
+                success {
+                   publishHTML([
+                       allowMissing: false,
+                       alwaysLinkToLastBuild: false,
+                       keepAll: false,
+                       reportDir: 'test-output//HtmlReport',
+                       reportFiles: 'ExtentHtml.html',
+                       reportName: 'Extent Report',
+                       reportTitles: '',
+                       useWrapperFileDirectly: true])
+                }
             }
         }
     }
-    stage('Results') {
-        junit '**/target/surefire-reports/TEST-*.xml'
-        archiveArtifacts 'target/*.jar'
-    }
 }
+// node {
+//     def mvnHome
+//     stage('Preparation') { // for display purposes
+//         // Get some code from a GitHub repository
+//         git 'https://github.com/abdelnaby1/Automation_Exercise.git'
+//         mvnHome = tool 'MAVEN_HOME'
+//     }
+//     stage('Build') {
+//         // Run the maven build
+//         withEnv(["MVN_HOME=$mvnHome"]) {
+//             if (isUnix()) {
+//                 sh '"$MVN_HOME/bin/mvn" test -Pcu'
+//             } else {
+//                bat(/"%MVN_HOME%\bin\mvn" test -Pcu/)
+//             }
+//         }
+//     }
+//     stage('Results') {
+//         junit '**/target/surefire-reports/TEST-*.xml'
+//         archiveArtifacts 'target/*.jar'
+//     }
+// }
