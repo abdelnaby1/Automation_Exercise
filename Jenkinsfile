@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Test') {
             steps {
-                sh "mvn clean test -Pcu"
+                bat "/opt/homebrew/bin/maven/mvn clean test -Pcu"
             }
 
             post {
