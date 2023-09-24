@@ -6,11 +6,11 @@ import org.openqa.selenium.WebElement;
 import utils.ElementActions;
 
 public class SearchPage {
-    private WebDriver driver;
-    private ElementActions eleActions;
-    private By searchField = By.id("small-searchterms");
-    private By searchBtn = By.xpath("//button[text()='Search']");
-    private By suggestionsList = By.id("ui-id-1");
+    private final WebDriver driver;
+    private final ElementActions eleActions;
+    private final By searchField = By.id("small-searchterms");
+    private final By searchBtn = By.xpath("//button[text()='Search']");
+    private final By suggestionsList = By.id("ui-id-1");
 
     public SearchPage(WebDriver driver) {
         this.driver = driver;

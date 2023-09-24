@@ -8,9 +8,9 @@ import org.openqa.selenium.support.ui.Select;
 import static org.testng.Assert.*;
 
 public class ElementActions {
-    private WebDriver driver;
+    private final WebDriver driver;
     public enum SelectType {
-        TEXT, VALUE;
+        TEXT, VALUE
     }
     public ElementActions(WebDriver driver) {
         this.driver = driver;
@@ -231,7 +231,7 @@ public class ElementActions {
             // Check if the element is displayed
             if (!driver.findElement(elementLocator).isDisplayed()) {
                 Logger.logStep("The element [" + elementLocator.toString() + "] is not Displayed");
-                fail("The element [" + elementLocator.toString() + "] is not Displayed");
+                fail("The element [" + elementLocator + "] is not Displayed");
             }else{
                 Logger.logStep("The element [" + elementLocator.toString() + "] is Displayed");
                 return true;

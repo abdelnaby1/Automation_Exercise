@@ -8,10 +8,10 @@ import utils.ElementActions;
 import java.util.List;
 
 public class SearchResultPage {
-    private WebDriver driver;
-    private ElementActions eleActions;
-    private By searchKeywordField = By.id("q");
-    private By prodcutSearchList = By.className("search-results");
+    private final WebDriver driver;
+    private final ElementActions eleActions;
+    private final By searchKeywordField = By.id("q");
+    private final By prodcutSearchList = By.className("search-results");
 
     public SearchResultPage(WebDriver driver) {
         this.driver = driver;

@@ -11,19 +11,19 @@ import java.util.Set;
 
 public class HomePage {
     private final String url = "https://rahulshettyacademy.com/seleniumPractise";
-    private WebDriver driver;
-    private By searchField = By.cssSelector("input.search-keyword");
-    private By submitBtn = By.cssSelector("button.search-button");
-    private By resultName =  By.cssSelector(".products-wrapper .products:first-child  .product-name");
-    private By offersLink = By.linkText("Top Deals");
+    private final WebDriver driver;
+    private final By searchField = By.cssSelector("input.search-keyword");
+    private final By submitBtn = By.cssSelector("button.search-button");
+    private final By resultName =  By.cssSelector(".products-wrapper .products:first-child  .product-name");
+    private final By offersLink = By.linkText("Top Deals");
     private By addToCartBtn(int productIdx){
         return By.xpath("(//*[contains(text(),'ADD TO CART')])["+productIdx+"]");
     }
     private By qtyField(int productIdx){
         return By.xpath("(//*[contains(@class,'quantity')])["+productIdx+"]");
     }
-    private By cartLink = By.xpath("//a[contains(@class,'cart-icon')]");
-    private By checkoutBtn = By.xpath("//button[contains(text(),'PROCEED TO CHECKOUT')]");
+    private final By cartLink = By.xpath("//a[contains(@class,'cart-icon')]");
+    private final By checkoutBtn = By.xpath("//button[contains(text(),'PROCEED TO CHECKOUT')]");
     public HomePage(WebDriver driver) {
         this.driver = driver;
     }

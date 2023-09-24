@@ -8,11 +8,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ComparePage {
-    private WebDriver driver;
-    private ElementActions eleActions;
-    private By clearBtn = By.xpath("//a[text()='Clear list']");
-    private By notData = By.className("no-data");
-    private By productsName = By.cssSelector("tr.product-name td a");
+    private final WebDriver driver;
+    private final ElementActions eleActions;
+    private final By clearBtn = By.xpath("//a[text()='Clear list']");
+    private final By notData = By.className("no-data");
+    private final By productsName = By.cssSelector("tr.product-name td a");
 
     public ComparePage(WebDriver driver) {
         this.driver = driver;

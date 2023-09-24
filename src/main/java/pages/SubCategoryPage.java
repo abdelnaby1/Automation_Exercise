@@ -4,9 +4,9 @@ import org.openqa.selenium.WebDriver;
 import utils.ElementActions;
 
 public class SubCategoryPage {
-    private WebDriver driver;
-    private String subcategoryName;
-    private ElementActions eleActions;
+    private final WebDriver driver;
+    private final String subcategoryName;
+    private final ElementActions eleActions;
 
     public SubCategoryPage(WebDriver driver,String subcategoryName) {
         this.driver = driver;

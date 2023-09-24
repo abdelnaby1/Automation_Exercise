@@ -10,7 +10,7 @@ import java.util.Collection;
 import java.util.Properties;
 
 public class PropertiesReader {
-    private static String path = "src/main/resources/";
+    private static final String path = "src/main/resources/";
 
     public static void loadProperties(){
         Properties properties = new Properties();

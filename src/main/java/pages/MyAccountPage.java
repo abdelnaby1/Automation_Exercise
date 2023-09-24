@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 import utils.ElementActions;
 
 public class MyAccountPage {
-    private WebDriver driver;
+    private final WebDriver driver;
     ElementActions eleActions;
 
     private final By changePassLink = By.linkText("Change password");

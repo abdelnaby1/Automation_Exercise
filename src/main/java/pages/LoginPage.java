@@ -5,14 +5,14 @@ import org.openqa.selenium.WebDriver;
 import utils.ElementActions;
 
 public class LoginPage {
-    private WebDriver driver;
-   private ElementActions eleActions;
+    private final WebDriver driver;
+   private final ElementActions eleActions;
 
-    private By emailField = By.id("Email");
-    private By passwordField = By.id("Password");
+    private final By emailField = By.id("Email");
+    private final By passwordField = By.id("Password");
     private final By loginBtn = By.cssSelector("button.button-1.login-button");
-    private By rememberMeField = By.id("RememberMe");
-    private By forgotPassLink = By.xpath("//a[contains(text(),'Forgot password?')]");
+    private final By rememberMeField = By.id("RememberMe");
+    private final By forgotPassLink = By.xpath("//a[contains(text(),'Forgot password?')]");
 
 
     public LoginPage(WebDriver driver) {

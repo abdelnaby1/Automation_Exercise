@@ -5,14 +5,14 @@ import org.openqa.selenium.WebDriver;
 import utils.ElementActions;
 
 public class CartPage {
-    private WebDriver driver;
+    private final WebDriver driver;
     private By productNameOnCart(int productIdx){
         return By.cssSelector("#productCartTables tbody tr:nth-child("+productIdx+") td:nth-child(2)");
     }
-    private By placeOrderBtn = By.xpath("//button[contains(text(),'Place Order')]");
+    private final By placeOrderBtn = By.xpath("//button[contains(text(),'Place Order')]");
 
-    private By countryField = By.tagName("select");
-    private By termsField = By.cssSelector("input.chkAgree");
+    private final By countryField = By.tagName("select");
+    private final By termsField = By.cssSelector("input.chkAgree");
 
     public CartPage(WebDriver driver) {
         this.driver = driver;

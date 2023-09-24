@@ -8,9 +8,9 @@ import java.util.Iterator;
 import java.util.Set;
 
 public class OffersPage {
-    private WebDriver driver;
-    private By searchField = By.id("search-field");
-    private By resultName = By.cssSelector("tr td:nth-child(1)");
+    private final WebDriver driver;
+    private final By searchField = By.id("search-field");
+    private final By resultName = By.cssSelector("tr td:nth-child(1)");
     String parentHandle;
     public OffersPage(WebDriver driver) {
         this.driver = driver;

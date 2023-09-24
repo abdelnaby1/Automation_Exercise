@@ -5,20 +5,20 @@ import org.openqa.selenium.WebDriver;
 import utils.ElementActions;
 
 public class ProductDetailsPage {
-    private WebDriver driver;
-    private ElementActions eleActions;
-    private By productTitle = By.cssSelector("strong.current-item");
-    private By emailAFrientBtn = By.xpath("//button[text()='Email a friend']");
-    private By priceLable = By.id("price-value-4");
-    private By addReviewBtn = By.xpath("//a[text()='Add your review']");
-    private By addToWishlistBtn = By.id("add-to-wishlist-button-5");
-    private By toastMessage = By.xpath("//p[text()='The product has been added to your ']");
-    private  By wishlistLink = By.xpath("//a[text()='wishlist']");
+    private final WebDriver driver;
+    private final ElementActions eleActions;
+    private final By productTitle = By.cssSelector("strong.current-item");
+    private final By emailAFrientBtn = By.xpath("//button[text()='Email a friend']");
+    private final By priceLable = By.id("price-value-4");
+    private final By addReviewBtn = By.xpath("//a[text()='Add your review']");
+    private final By addToWishlistBtn = By.id("add-to-wishlist-button-5");
+    private final By toastMessage = By.xpath("//p[text()='The product has been added to your ']");
+    private final By wishlistLink = By.xpath("//a[text()='wishlist']");
 
-    private By addToCompareBtn = By.xpath("//div[contains(@class,'compare-products')]//button[text()='Add to compare list']");
+    private final By addToCompareBtn = By.xpath("//div[contains(@class,'compare-products')]//button[text()='Add to compare list']");
 
-    private By toastMsg = By.cssSelector(".bar-notification .content");
-    private By addToCartBtn = By.xpath("//div[@class='add-to-cart']//button[text()='Add to cart']");
+    private final By toastMsg = By.cssSelector(".bar-notification .content");
+    private final By addToCartBtn = By.xpath("//div[@class='add-to-cart']//button[text()='Add to cart']");
     public ProductDetailsPage(WebDriver driver) {
         this.driver = driver;
         eleActions = new ElementActions(driver);

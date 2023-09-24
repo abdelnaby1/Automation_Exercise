@@ -211,16 +211,16 @@
             <argLine>
               -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
             </argLine>
-<!--            <properties>-->
-<!--              <property>-->
-<!--                <name>usedefaultlisteners</name>-->
-<!--                <value>true</value> &lt;!&ndash; disabling default listeners is optional &ndash;&gt;-->
-<!--              </property>-->
-<!--              <property>-->
-<!--                <name>listener</name>-->
-<!--                <value>listeners.TestngListener</value>-->
-<!--              </property>-->
-<!--            </properties>-->
+            <properties>
+              <property>
+                <name>usedefaultlisteners</name>
+                <value>true</value> <!-- disabling default listeners is optional -->
+              </property>
+              <property>
+                <name>listener</name>
+                <value>listeners.TestngListener</value>
+              </property>
+            </properties>
           </configuration>
         </plugin>
       </plugins>

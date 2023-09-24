@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JsonReader {
-    private String jsonFilePath;
+    private final String jsonFilePath;
     private String jsonReader;
 
     public JsonReader(String jsonFile) {

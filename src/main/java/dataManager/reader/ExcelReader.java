@@ -13,7 +13,7 @@ import static org.testng.Assert.fail;
 public class ExcelReader {
     private FileInputStream spreadsheet;
     private Sheet currentSheet;
-    private Map<String, Integer> columns;
+    private final Map<String, Integer> columns;
 
     public ExcelReader(String excelFile) {
         String excelFilePath = System.getProperty("user.dir") + "/src/test/resources/testData/" + excelFile;

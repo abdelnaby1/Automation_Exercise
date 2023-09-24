@@ -8,7 +8,7 @@ public class JDBCConnector {
     private final String user = "root";
     private final String password = "abdelnaby";
     private final String dbName = "QAdbt";
-    private String url = "jdbc:mysql://" + host + ":" + port + "/" + dbName;
+    private final String url = "jdbc:mysql://" + host + ":" + port + "/" + dbName;
 
 
     public ResultSet connect(){

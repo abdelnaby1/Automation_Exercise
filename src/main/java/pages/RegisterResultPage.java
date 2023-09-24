@@ -6,7 +6,7 @@ import utils.ElementActions;
 
 public class RegisterResultPage {
 
-    private WebDriver driver;
+    private final WebDriver driver;
     ElementActions eleActions;
 
     private final By successMessage = By.cssSelector("div.result");

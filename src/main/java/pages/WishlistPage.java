@@ -9,12 +9,12 @@ import utils.ElementActions;
 import java.time.Duration;
 
 public class WishlistPage {
-    private  WebDriver driver;
-    private ElementActions eleActions;
+    private final WebDriver driver;
+    private final ElementActions eleActions;
     private  String recentlyAddedProduct;
-    private By productNames = By.cssSelector("td.product .product-name");
-    private By removeBtns = By.cssSelector("button.remove-btn");
-    private By noDataLabel = By.cssSelector("div.no-data");
+    private final By productNames = By.cssSelector("td.product .product-name");
+    private final By removeBtns = By.cssSelector("button.remove-btn");
+    private final By noDataLabel = By.cssSelector("div.no-data");
     public WishlistPage(WebDriver driver ) {
         this.driver = driver;
         eleActions = new ElementActions(driver);

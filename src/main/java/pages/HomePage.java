@@ -9,8 +9,8 @@ public class HomePage {
     private  static WebDriver driver;
     private static  ElementActions eleActions;
     private final By registerLink = By.linkText("Register");
-    private static By loginLink = By.linkText("Log in");
-    private static By logoutLink = By.linkText("Log out");
+    private static final By loginLink = By.linkText("Log in");
+    private static final By logoutLink = By.linkText("Log out");
     private  final By myAccountLink = By.linkText("My account");
 
     private  final  By contactUsLink = By.linkText("Contact us");
@@ -19,7 +19,7 @@ public class HomePage {
 
 
     public HomePage(WebDriver driver) {
-        this.driver = driver;
+        HomePage.driver = driver;
         eleActions = new ElementActions(driver);
     }
     public UserRegisterPage openRegistrationPage(){

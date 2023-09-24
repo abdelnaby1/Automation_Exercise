@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 import utils.ElementActions;
 
 public class UserRegisterPage {
-    private  WebDriver driver;
+    private final WebDriver driver;
 
 
     private final By genderField = By.id("gender-male");

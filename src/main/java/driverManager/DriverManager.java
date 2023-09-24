@@ -7,15 +7,15 @@ import org.testng.ITestResult;
 public interface DriverManager {
 
 
-    static final String executionTypeProperty = System.getProperty("execution.type");
-    static final String host = System.getProperty("remote.execution.host");
-    static final String port = System.getProperty("remote.execution.port");
-    static final String saucelabUrl = System.getProperty("saucelab.url");
-    static final String saucelabUsername = System.getProperty("saucelab.username");
-    static final String saucelabKey = System.getProperty("saucelab.accesskey");
+    String executionTypeProperty = System.getProperty("execution.type");
+    String host = System.getProperty("remote.execution.host");
+    String port = System.getProperty("remote.execution.port");
+    String saucelabUrl = System.getProperty("saucelab.url");
+    String saucelabUsername = System.getProperty("saucelab.username");
+    String saucelabKey = System.getProperty("saucelab.accesskey");
 
 
-    public enum ExecutionType {
+    enum ExecutionType {
         LOCAL("Local"), REMOTE("Remote"), LOCAL_HEADLESS("Local Headless"), FROM_PROPERTIES(executionTypeProperty);
 
         private final String value;
