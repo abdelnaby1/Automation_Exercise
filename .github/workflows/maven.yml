@@ -30,6 +30,11 @@ jobs:
 
     - name: Run tests with Maven
       run: mvn clean test -Pcu
+    - name: Deploy to GitHub Pages
+      uses: JamesIves/github-pages-deploy-action@v4.4.3
+      with:
+        branch: main
+        folder: ./test-output/HtmlReport
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
     - name: Update dependency graph
