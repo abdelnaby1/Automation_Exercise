@@ -1,8 +1,6 @@
 package driverManager;
 
 import org.openqa.selenium.WebDriver;
-import org.testng.ITestContext;
-import org.testng.ITestResult;
 
 public interface DriverManager {
 

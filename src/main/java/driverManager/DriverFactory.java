@@ -1,18 +1,13 @@
 package driverManager;
 
-import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ThreadGuard;
-import org.openqa.selenium.support.events.EventFiringDecorator;
-import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.ITestResult;
 import org.testng.Reporter;
 import utils.BrowserActions;
 
-import java.net.MalformedURLException;
-import java.net.URL;
+
 
 import static org.testng.Assert.fail;
 
@@ -45,7 +40,7 @@ public class DriverFactory {
                 driver.remove(); // Remove WebDriver reference from the ThreadLocal variable.
                 driver.set(null);
             } catch (Exception e) {
-                System.err.println("Unable to gracefully quit WebDriver."+ e); // We'll replace this with actual Loggers later - don't worry !
+                System.err.println("Unable to gracefully quit WebDriver."+ e); // We'll replace this with actual Loggers later - don't worry!
             }finally {
                 driver.set(null);
             }

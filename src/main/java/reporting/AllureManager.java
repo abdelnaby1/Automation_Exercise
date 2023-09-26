@@ -7,7 +7,6 @@ import io.qameta.allure.Attachment;
 import org.openqa.selenium.TakesScreenshot;
 import utils.BrowserInfoUtils;
 
-import java.sql.DriverManager;
 
 import static org.openqa.selenium.OutputType.BYTES;
 
