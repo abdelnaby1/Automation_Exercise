@@ -13,7 +13,6 @@ import org.testng.annotations.DataProvider;
                 "json:target/cucumber-reports/CucumberTestReport.json",
                 "json:target/cucumber-reports/cucumber.json",
                 "html:cucumber-reports/report.html",
-                "listeners.CucumberListener",
                 "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm",
                 "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"
         }

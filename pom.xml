@@ -325,7 +325,7 @@
               <properties>
                 <property>
                   <name>dataproviderthreadcount</name>
-                  <value>6</value>
+                  <value>12</value>
                 </property>
               </properties>
               <parallel>methods</parallel>
